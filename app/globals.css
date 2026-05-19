@@ -14,6 +14,8 @@
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  --display: "Arial Narrow", "HelveticaNeue-CondensedBold", "Helvetica Neue Condensed",
+    "Roboto Condensed", Impact, var(--sans);
 }
 
 * {
@@ -56,6 +58,15 @@ button:focus-visible {
   color: var(--bg-deep);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
 .section-shell {
   width: min(100%, 1900px);
   margin: 0 auto;
@@ -73,15 +84,16 @@ button:focus-visible {
 
 .header-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr auto;
+  grid-template-columns: 1fr 1fr auto auto auto;
   gap: 1.25rem;
   align-items: center;
   padding-bottom: 1.05rem;
   border-bottom: 1px solid var(--accent);
   color: var(--accent);
-  font-family: var(--mono);
+  font-family: var(--display);
   font-size: clamp(0.74rem, 1.1vw, 1rem);
-  letter-spacing: 0.035em;
+  font-weight: 760;
+  letter-spacing: 0.075em;
   text-transform: uppercase;
 }
 
@@ -109,6 +121,14 @@ button:focus-visible {
   padding-bottom: clamp(2rem, 5vh, 4rem);
 }
 
+.home-hero {
+  display: flex;
+  min-height: calc(100vh - 5rem);
+  flex-direction: column;
+  justify-content: center;
+  padding-top: clamp(2rem, 6vh, 5rem);
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.74fr) minmax(18rem, 0.26fr);
@@ -129,14 +149,98 @@ button:focus-visible {
   text-wrap: balance;
 }
 
+.home-name {
+  width: 100%;
+  color: #85898c;
+  font-family: var(--display);
+  font-size: clamp(5rem, 21.5vw, 25rem);
+  font-stretch: condensed;
+  font-weight: 820;
+  letter-spacing: -0.045em;
+  line-height: 0.78;
+  transform: scaleY(1.12);
+  transform-origin: left center;
+}
+
 .hero-name span {
-  display: block;
   max-width: 100%;
   filter: drop-shadow(0 24px 50px rgba(0, 0, 0, 0.16));
 }
 
+.hero-word,
+.hero-last {
+  display: block;
+}
+
+.home-name {
+  max-width: 100%;
+}
+
+.hero-word {
+  white-space: nowrap;
+}
+
+.hero-letter {
+  display: inline-block;
+  transition:
+    color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease,
+    text-shadow 180ms ease;
+}
+
+.hero-letter:hover {
+  color: #c3c8cc;
+  opacity: 1;
+  transform: translateY(-0.018em) scaleY(1.025);
+  text-shadow: 0 0 28px rgba(191, 200, 208, 0.18);
+}
+
 .hero-name .hero-last {
   letter-spacing: -0.095em;
+}
+
+.home-name .hero-last {
+  letter-spacing: -0.13em;
+}
+
+.hero-minor {
+  display: flex;
+  justify-content: flex-end;
+  gap: clamp(1rem, 3vw, 3rem);
+  margin-top: clamp(2rem, 5vh, 4rem);
+  color: var(--muted-text);
+  font-family: var(--mono);
+  font-size: clamp(0.72rem, 1vw, 0.95rem);
+  text-transform: uppercase;
+}
+
+.hero-minor a {
+  color: var(--accent);
+}
+
+.hero-about-bar {
+  justify-content: flex-end;
+  border-top: 1px solid var(--divider-strong);
+  padding-top: clamp(0.8rem, 1.5vw, 1.3rem);
+}
+
+.hero-minor .hero-about-link {
+  color: #85898c;
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 7.4vw, 8.5rem);
+  font-weight: 820;
+  letter-spacing: -0.045em;
+  line-height: 0.78;
+  text-transform: uppercase;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.hero-minor .hero-about-link:hover {
+  color: var(--hero-text);
+  transform: translateX(-0.12em);
 }
 
 .hero-copy {
@@ -284,8 +388,12 @@ button:focus-visible {
   display: grid;
   grid-template-columns: minmax(11rem, 0.34fr) minmax(0, 1fr);
   gap: clamp(2rem, 7vw, 8rem);
-  padding-block: clamp(5rem, 10vw, 9rem);
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
   border-top: 1px solid var(--divider);
+}
+
+.subpage {
+  padding-top: clamp(2rem, 5vw, 4.5rem);
 }
 
 .section-label {
@@ -315,7 +423,7 @@ button:focus-visible {
 .section-label h2 {
   margin: 0;
   color: var(--hero-text);
-  font-size: clamp(1.65rem, 4vw, 4.3rem);
+  font-size: clamp(1.45rem, 3vw, 3.1rem);
   font-weight: 500;
   letter-spacing: -0.075em;
   line-height: 0.9;
@@ -329,10 +437,10 @@ button:focus-visible {
 .about-copy p {
   margin: 0;
   color: var(--hero-text);
-  font-size: clamp(1.55rem, 3.5vw, 4.15rem);
-  font-weight: 650;
-  letter-spacing: -0.055em;
-  line-height: 1.02;
+  font-size: clamp(1.25rem, 2.3vw, 2.25rem);
+  font-weight: 560;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
 }
 
 .about-copy p + p {
@@ -371,7 +479,7 @@ button:focus-visible {
 .education-row h3 {
   margin: 0;
   color: var(--hero-text);
-  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-size: clamp(1.25rem, 2.15vw, 2rem);
   font-weight: 560;
   letter-spacing: -0.065em;
   line-height: 0.98;
@@ -408,7 +516,7 @@ button:focus-visible {
 .interest-copy p {
   margin: 0;
   color: var(--body-text);
-  font-size: clamp(1.03rem, 1.55vw, 1.42rem);
+  font-size: clamp(0.98rem, 1.2vw, 1.15rem);
   line-height: 1.5;
 }
 
@@ -499,46 +607,42 @@ button:focus-visible {
 
 .education-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(13rem, 0.35fr);
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
   gap: 2rem;
   padding: clamp(1.5rem, 4vw, 3rem) 0;
   border-top: 1px solid var(--divider-strong);
   border-bottom: 1px solid var(--divider);
 }
 
-.education-row .coursework {
-  grid-column: 1 / -1;
+.education-row .education-note {
   max-width: 68rem;
-  color: var(--muted-text);
+  color: var(--body-text);
 }
 
 .interests {
   padding-bottom: clamp(6rem, 12vw, 10rem);
 }
 
-.interest-copy p {
-  max-width: 54rem;
-  color: var(--hero-text);
-  font-size: clamp(1.35rem, 2.6vw, 2.7rem);
-  letter-spacing: -0.055em;
-  line-height: 1.12;
+.interest-copy ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.interest-copy strong {
-  display: block;
-  margin-top: 2.5rem;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--divider-strong);
-  font-size: clamp(2.4rem, 8.5vw, 9rem);
-  font-weight: 900;
-  letter-spacing: -0.08em;
-  line-height: 0.82;
+.interest-copy li {
+  border-bottom: 1px solid var(--divider);
+  padding: 0.85rem 0;
+  color: var(--hero-text);
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
   text-transform: uppercase;
 }
 
 .contact-footer {
   overflow: hidden;
-  padding: clamp(3rem, 7vw, 6rem) var(--page-pad) 1.5rem;
+  padding: clamp(2rem, 4vw, 3rem) var(--page-pad) 1.5rem;
   border-top: 1px solid var(--accent);
   background: var(--bg-deep);
 }
@@ -577,10 +681,9 @@ button:focus-visible {
 }
 
 .footer-content {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.28fr);
-  gap: 3rem;
-  padding-block: clamp(3rem, 8vw, 7rem);
+  display: flex;
+  justify-content: flex-end;
+  padding-block: clamp(1rem, 3vw, 2.5rem);
 }
 
 .footer-kicker {
@@ -603,7 +706,7 @@ button:focus-visible {
 }
 
 .copy-button {
-  margin-top: 1.7rem;
+  margin-top: 0.8rem;
   padding: 0;
   border: 0;
   border-bottom: 1px solid currentColor;
@@ -615,11 +718,65 @@ button:focus-visible {
   text-transform: uppercase;
 }
 
+.writings-page {
+  min-height: 70vh;
+}
+
+.page-intro {
+  max-width: 58rem;
+  padding-block: clamp(5rem, 12vw, 9rem) clamp(3rem, 7vw, 6rem);
+}
+
+.page-intro span,
+.writing-row > span {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.page-intro h1 {
+  margin: 1rem 0 0;
+  color: var(--hero-text);
+  font-size: clamp(2rem, 5vw, 5rem);
+  font-weight: 560;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
+}
+
+.writing-list {
+  border-top: 1px solid var(--divider-strong);
+}
+
+.writing-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  padding: clamp(1.4rem, 3vw, 2.4rem) 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.writing-row h2 {
+  margin: 0 0 0.55rem;
+  color: var(--hero-text);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 560;
+  letter-spacing: -0.04em;
+}
+
+.writing-row p {
+  max-width: 48rem;
+  margin: 0;
+  color: var(--body-text);
+  line-height: 1.55;
+}
+
 .copy-button:hover {
   color: var(--accent-hover);
 }
 
-.footer-links {
+.footer-links,
+.social-links {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -629,9 +786,43 @@ button:focus-visible {
   text-transform: uppercase;
 }
 
-.footer-links a {
+.social-links {
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer-links a,
+.social-links a {
   border-bottom: 1px solid var(--divider);
   padding-bottom: 0.55rem;
+}
+
+.social-links a {
+  display: grid;
+  width: 2.85rem;
+  height: 2.85rem;
+  place-items: center;
+  border: 1px solid var(--divider);
+  padding: 0;
+  color: var(--hero-text);
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.social-links a:hover {
+  border-color: var(--accent);
+  background: rgba(239, 91, 125, 0.08);
+  color: var(--accent-hover);
+  transform: translateY(-0.18rem);
+}
+
+.social-links svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: currentColor;
 }
 
 .footer-links span {
@@ -653,6 +844,10 @@ button:focus-visible {
 @media (min-width: 1180px) {
   .hero-name {
     max-width: 72vw;
+  }
+
+  .home-name {
+    max-width: 100%;
   }
 }
 
@@ -756,7 +951,7 @@ button:focus-visible {
   }
 
   .hero {
-    min-height: auto;
+    min-height: calc(100vh - 4rem);
     padding-top: 3.5rem;
   }
 
@@ -765,12 +960,29 @@ button:focus-visible {
     letter-spacing: -0.09em;
   }
 
+  .home-name {
+    font-size: clamp(4.85rem, 24.2vw, 8rem);
+    letter-spacing: -0.055em;
+  }
+
+  .hero-minor {
+    justify-content: flex-start;
+  }
+
+  .hero-about-bar {
+    justify-content: flex-start;
+  }
+
+  .hero-about-link {
+    font-size: clamp(2.8rem, 18vw, 5rem);
+  }
+
   .content-section {
     padding-block: 4.5rem;
   }
 
   .about-copy p {
-    font-size: clamp(2rem, 11vw, 3.8rem);
+    font-size: clamp(1.3rem, 7vw, 2.1rem);
   }
 
   .experience-row,
@@ -791,6 +1003,11 @@ button:focus-visible {
 
   .footer-email {
     font-size: clamp(2.2rem, 11vw, 4.5rem);
+  }
+
+  .interest-copy ul,
+  .writing-row {
+    grid-template-columns: 1fr;
   }
 }
 

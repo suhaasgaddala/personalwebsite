@@ -1,4 +1,5 @@
 import type { projects } from "@/data/projects";
+import { socials } from "@/data/socials";
 
 type Project = (typeof projects)[number];
 
@@ -9,9 +10,10 @@ type ProjectRowProps = {
 
 export function ProjectRow({ project, index }: ProjectRowProps) {
   const linkLabel = project.href === "#" ? "GitHub profile fallback" : `Open ${project.name}`;
+  const href = project.href === "#" ? socials.github : project.href;
 
   return (
-    <a className="project-row interactive-row" href={project.href} aria-label={linkLabel}>
+    <a className="project-row interactive-row" href={href} aria-label={linkLabel}>
       <div className="row-index">{String(index + 1).padStart(2, "0")}</div>
       <div className="project-meta">
         <span>{project.category}</span>

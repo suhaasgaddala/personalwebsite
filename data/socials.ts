@@ -4,5 +4,7 @@ export const socials = {
   linkedIn: "https://linkedin.com/in/suhaasga",
   linkedInLabel: "linkedin.com/in/suhaasga",
   github: "https://github.com/suhaasgaddala",
-  githubLabel: "github.com/suhaasgaddala"
+  githubLabel: "github.com/suhaasgaddala",
+  x: "https://x.com/suhaasgaddalaa",
+  xLabel: "x.com/suhaasgaddalaa"
 };

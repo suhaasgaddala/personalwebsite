@@ -10,14 +10,9 @@ export function Education() {
         <div>
           <h3>{education.school}</h3>
           <p>{education.degree}</p>
-          <p>{education.pathway} / {education.minor}</p>
+          <p>{education.focus} / {education.minor}</p>
         </div>
-        <div className="education-meta">
-          <span>{education.graduation}</span>
-          <span>{education.gpa}</span>
-          <span>{education.location}</span>
-        </div>
-        <p className="coursework">{education.coursework}</p>
+        <p className="education-note">{education.note}</p>
       </Reveal>
     </section>
   );
