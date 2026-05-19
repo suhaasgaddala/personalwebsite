@@ -46,8 +46,22 @@ export function Hero() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 1.15 }}
       >
         <Link href="/about" className="hero-about-link">
-          About
+          about
         </Link>
+        <div className="hero-about-copy">
+          <p>
+            I’m currently based in Texas, still trying to figure out what I want
+            to do in terms of engineering. I’m still trying to find the niche I’m
+            passionate about, but in the meantime, I’m currently interested at
+            the intersection of finance, quantitative financial modeling, and
+            autonomous systems. I am also currently in the process of publishing
+            some research regarding ML models.
+          </p>
+          <p>
+            I love to play tennis and volleyball, and I dream to move to northern
+            Italy.
+          </p>
+        </div>
       </motion.div>
     </section>
   );

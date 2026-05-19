@@ -13,17 +13,16 @@ export function Header() {
     >
       <nav className="header-grid" aria-label="Primary navigation">
         <Link href="/" className="header-link header-name">
-          Suhaas Gaddala
+          suhaas gaddala
         </Link>
-        <span>Full Stack Developer</span>
         <Link href="/about" className="header-link hide-mobile">
-          About
+          about
         </Link>
         <Link href="/writings" className="header-link hide-mobile">
-          Writings
+          writings
         </Link>
         <a href="#contact" className="header-link header-contact">
-          Contact <span aria-hidden="true">/</span>
+          contact
         </a>
       </nav>
     </motion.header>

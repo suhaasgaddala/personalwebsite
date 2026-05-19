@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import { Bebas_Neue } from "next/font/google";
 import "./globals.css";
+
+const displayFont = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display"
+});
 
 export const metadata: Metadata = {
   title: "Suhaas Gaddala — Full Stack Developer",
@@ -20,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={displayFont.variable}>{children}</body>
     </html>
   );
 }

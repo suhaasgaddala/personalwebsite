@@ -29,6 +29,9 @@ export function ContactFooter() {
   return (
     <footer className="contact-footer" id="contact">
       <Reveal className="footer-content">
+        <a className="footer-contact-email" href={`mailto:${socials.email}`}>
+          {socials.email}
+        </a>
         <div className="social-links" aria-label="Social links">
           <a href={socials.linkedIn} aria-label="LinkedIn profile">
             <LinkedInIcon />
@@ -43,7 +46,6 @@ export function ContactFooter() {
       </Reveal>
       <div className="footer-meta">
         <span>© 2026 Suhaas Gaddala</span>
-        <span>Full Stack Developer</span>
         <span>@suhaasgaddalaa</span>
       </div>
     </footer>
