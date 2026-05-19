@@ -1,0 +1,8 @@
+export const socials = {
+  email: "suhaasg05@gmail.com",
+  phone: "(972)-520-2464",
+  linkedIn: "https://linkedin.com/in/suhaasga",
+  linkedInLabel: "linkedin.com/in/suhaasga",
+  github: "https://github.com/suhaasgaddala",
+  githubLabel: "github.com/suhaasgaddala"
+};
