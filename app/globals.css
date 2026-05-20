@@ -641,7 +641,7 @@ button:focus-visible {
 .kinetic-projects {
   width: 100%;
   overflow: hidden;
-  min-height: 210vh;
+  min-height: 185vh;
   padding-block: 0;
   border-top: 1px solid var(--accent);
   border-bottom: 1px solid var(--accent);
@@ -662,38 +662,7 @@ button:focus-visible {
   overflow: hidden;
   border-bottom: 1px solid var(--divider);
   color: var(--hero-text);
-  isolation: isolate;
-  transition:
-    background-color 240ms ease,
-    color 180ms ease;
-}
-
-.kinetic-project-row::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background: rgba(239, 91, 125, 0.08);
-  opacity: 0;
-  transition: opacity 220ms ease;
-}
-
-.kinetic-project-row::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: -1;
-  width: 16rem;
-  height: 16rem;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle, rgba(239, 91, 125, 0.34) 0%, rgba(239, 91, 125, 0.18) 44%, rgba(239, 91, 125, 0) 70%);
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.16);
-  transition:
-    opacity 260ms ease,
-    transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: color 180ms ease;
 }
 
 .kinetic-project-row:last-child {
@@ -727,21 +696,13 @@ button:focus-visible {
   will-change: transform;
 }
 
+.kinetic-project-row .project-title-marquee-long {
+  font-size: clamp(6rem, 13.2vw, 17rem);
+}
+
 .kinetic-project-row:hover,
 .kinetic-project-row:focus-visible {
   color: var(--accent-hover);
-  background-color: rgba(239, 91, 125, 0.06);
-}
-
-.kinetic-project-row:hover::before,
-.kinetic-project-row:focus-visible::before {
-  opacity: 1;
-}
-
-.kinetic-project-row:hover::after,
-.kinetic-project-row:focus-visible::after {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(5.8);
 }
 
 .project-meta p {
@@ -1132,7 +1093,7 @@ button:focus-visible {
   }
 
   .kinetic-projects {
-    min-height: 185vh;
+    min-height: 172vh;
   }
 
   .kinetic-project-row {
@@ -1141,6 +1102,10 @@ button:focus-visible {
 
   .kinetic-project-row .project-title-marquee {
     font-size: clamp(5.6rem, 20vw, 12rem);
+  }
+
+  .kinetic-project-row .project-title-marquee-long {
+    font-size: clamp(4.6rem, 15vw, 8.6rem);
   }
 
   .skill-grid,
@@ -1239,7 +1204,7 @@ button:focus-visible {
   }
 
   .kinetic-projects {
-    min-height: 170vh;
+    min-height: 162vh;
   }
 
   .kinetic-project-row {
@@ -1247,7 +1212,15 @@ button:focus-visible {
   }
 
   .kinetic-project-row .project-title-marquee {
-    font-size: clamp(5.2rem, 26vw, 8rem);
+    font-size: clamp(3.8rem, 19vw, 6.5rem);
+  }
+
+  .kinetic-project-row .project-title-marquee-medium {
+    font-size: clamp(3.3rem, 15.4vw, 5rem);
+  }
+
+  .kinetic-project-row .project-title-marquee-long {
+    font-size: clamp(2rem, 8.2vw, 3.6rem);
   }
 
   .footer-content {
