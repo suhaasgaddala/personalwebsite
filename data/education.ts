@@ -1,8 +1,8 @@
 export const education = {
   school: "The University of Texas at Dallas",
-  degree: "Bachelor of Science in Computer Science",
-  focus: "Data Science",
-  minor: "Minor in Finance",
+  degree: "Computer Science",
+  focus: "",
+  minor: "",
   note:
-    "UTD might not always be the most loudly appreciated school, but it is full of talented people. I have met friends, builders, and mentors there who pushed me deeper into computer science and made the field feel alive."
+    "I am currently studying Computer Science at UTD. It might not be the most social or prestigious school but I have met some brilliant people here that have pushed me deeper into the field of computer science."
 };

@@ -6,5 +6,6 @@ export const socials = {
   github: "https://github.com/suhaasgaddala",
   githubLabel: "github.com/suhaasgaddala",
   x: "https://x.com/suhaasgaddalaa",
-  xLabel: "x.com/suhaasgaddalaa"
+  xLabel: "x.com/suhaasgaddalaa",
+  spotify: "https://open.spotify.com/user/upg5d3abzdbtjvkub81dkdinu?si=df1ca2f933884aae"
 };

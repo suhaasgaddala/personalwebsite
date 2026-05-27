@@ -1,4 +1,5 @@
-import { Reveal } from "@/components/Reveal";
+"use client";
+
 import { socials } from "@/data/socials";
 
 function LinkedInIcon() {
@@ -28,10 +29,8 @@ function XIcon() {
 export function ContactFooter() {
   return (
     <footer className="contact-footer" id="contact">
-      <Reveal className="footer-content">
-        <a className="footer-contact-email" href={`mailto:${socials.email}`}>
-          {socials.email}
-        </a>
+      <div className="footer-minimal">
+        <p>React + Next.js + Tailwind + Coffee + intense music :-)</p>
         <div className="social-links" aria-label="Social links">
           <a href={socials.linkedIn} aria-label="LinkedIn profile">
             <LinkedInIcon />
@@ -43,10 +42,6 @@ export function ContactFooter() {
             <XIcon />
           </a>
         </div>
-      </Reveal>
-      <div className="footer-meta">
-        <span>© 2026 Suhaas Gaddala</span>
-        <span>@suhaasgaddalaa</span>
       </div>
     </footer>
   );

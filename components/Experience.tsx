@@ -9,11 +9,10 @@ export function Experience() {
       id="experience"
       aria-labelledby="experience-title"
     >
-      <SectionLabel eyebrow="01 / Work" title={"Selected\nExperience"} />
+      <SectionLabel title="Where I Have Worked" />
       <div className="row-list" id="experience-title">
         {experience.map((item, index) => (
           <Reveal className="experience-row interactive-row" delay={index * 0.06} key={item.company}>
-            <div className="row-index">{String(index + 1).padStart(2, "0")}</div>
             <div className="row-meta">
               <h3>{item.company}</h3>
               <p>{item.role}</p>

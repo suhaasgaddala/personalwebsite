@@ -9,9 +9,12 @@ type ProjectRowProps = {
 };
 
 export function ProjectRow({ project, x }: ProjectRowProps) {
-  const titleClassName = project.name.length > 16
+  const displayTitle = project.name === "tab"
+    ? "tab / interface"
+    : project.name;
+  const titleClassName = displayTitle.length > 16
     ? "project-title-marquee project-title-marquee-long"
-    : project.name.length > 9
+    : displayTitle.length > 9
       ? "project-title-marquee project-title-marquee-medium"
     : "project-title-marquee";
 
@@ -23,7 +26,7 @@ export function ProjectRow({ project, x }: ProjectRowProps) {
       style={{ "--lane-x": x } as CSSProperties}
     >
       <div className="project-title-window">
-        <h3 className={titleClassName}>{project.name}</h3>
+        <h3 className={titleClassName}>{displayTitle}</h3>
       </div>
     </a>
   );

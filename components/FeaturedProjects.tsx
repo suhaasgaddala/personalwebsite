@@ -17,36 +17,39 @@ export function FeaturedProjects() {
     let frame = 0;
 
     const update = () => {
-      const rect = section.getBoundingClientRect();
-      const travel = Math.max(1, rect.height - window.innerHeight);
-      const progress = Math.min(1, Math.max(0, -rect.top / travel));
-      const titles = Array.from(
-        section.querySelectorAll<HTMLElement>(".project-title-marquee")
+      const rows = Array.from(
+        section.querySelectorAll<HTMLElement>(".kinetic-project-row")
       );
       const viewportWidth = window.innerWidth;
       const gutter = Math.max(14, Math.min(38, viewportWidth * 0.024));
 
       setPositions(
-        titles.map((title, index) => {
+        rows.map((row, index) => {
+          const title = row.querySelector<HTMLElement>(".project-title-marquee");
+          if (!title) {
+            return "0px";
+          }
+
+          const rect = row.getBoundingClientRect();
+          const travelStart = window.innerHeight * 0.95;
+          const travelDistance = window.innerHeight * 0.78;
+          const progress = Math.min(
+            1,
+            Math.max(0, (travelStart - rect.top) / travelDistance)
+          );
           const stagger = (Math.floor(index / 2) % 3) * (viewportWidth < 640 ? 10 : 18);
           const titleWidth = title.offsetWidth;
-          const measuredDistance =
-            viewportWidth * (viewportWidth < 640 ? 0.2 : 0.18) +
-            Math.min(titleWidth, viewportWidth) * (viewportWidth < 640 ? 0.18 : 0.22);
-          const distance = Math.min(
-            viewportWidth * (viewportWidth < 640 ? 0.42 : 0.46),
-            Math.max(viewportWidth * (viewportWidth < 640 ? 0.28 : 0.26), measuredDistance)
+          const leftAnchor = gutter + stagger;
+          const rightAnchor = Math.max(
+            leftAnchor,
+            viewportWidth - titleWidth - gutter - stagger
           );
 
           if (index % 2 === 0) {
-            const start = gutter + stagger;
-            const end = start + distance;
-            return `${start + (end - start) * progress}px`;
+            return `${leftAnchor + (rightAnchor - leftAnchor) * progress}px`;
           }
 
-          const start = viewportWidth - titleWidth - gutter - stagger;
-          const end = start - distance;
-          return `${start + (end - start) * progress}px`;
+          return `${rightAnchor + (leftAnchor - rightAnchor) * progress}px`;
         })
       );
     };

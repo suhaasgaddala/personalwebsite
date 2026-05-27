@@ -18,12 +18,12 @@ export function Header() {
         <Link href="/about" className="header-link hide-mobile">
           about
         </Link>
+        <Link href="/projects" className="header-link hide-mobile">
+          projects
+        </Link>
         <Link href="/writings" className="header-link hide-mobile">
           writings
         </Link>
-        <a href="#contact" className="header-link header-contact">
-          contact
-        </a>
       </nav>
     </motion.header>
   );
