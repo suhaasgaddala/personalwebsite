@@ -21,6 +21,9 @@ export function Research() {
             automating annotation, feature extraction, and downstream
             experimental analysis.
           </p>
+        </article>
+        <article className="detail-item">
+          <h3>Machine Learning Publication</h3>
           <p>
             Currently in the process of publishing some research on Machine
             Learning.

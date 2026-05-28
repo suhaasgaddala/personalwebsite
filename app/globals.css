@@ -118,6 +118,21 @@ button:focus-visible {
   font-weight: 620;
 }
 
+.header-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+}
+
+.sg-logo-text {
+  font-family: var(--font-cursive), "Dancing Script", "Segoe Script", cursive;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  color: currentColor;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
 .header-contact {
   display: inline-flex;
   gap: 0.6rem;
@@ -174,9 +189,53 @@ button:focus-visible {
 
 .hero-name-lockup {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(8.5rem, 14vw, 17rem);
+  grid-template-columns: minmax(0, 1fr) clamp(9rem, 16vw, 20rem);
   gap: clamp(1rem, 2.6vw, 3.5rem);
   align-items: end;
+}
+
+.film-frame {
+  display: flex;
+  align-items: stretch;
+  align-self: end;
+  margin-bottom: clamp(0.2rem, 1vw, 1.1rem);
+  background: #0d0f10;
+  border: 2px solid #1c2024;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.film-sprocket {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-shrink: 0;
+  width: 1.4rem;
+  padding: 0.5rem 0;
+  background: #0d0f10;
+  gap: 0;
+}
+
+.film-hole {
+  width: 0.65rem;
+  height: 0.42rem;
+  border-radius: 1px;
+  background: rgba(37, 46, 54, 0.92);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.film-photo {
+  display: block;
+  flex: 1;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .hero-photo {
@@ -510,11 +569,12 @@ button:focus-visible {
 
 .about-simple .section-label h2 {
   color: var(--hero-text);
-  font-size: clamp(1.75rem, 4vw, 2.45rem);
-  font-weight: 560;
-  letter-spacing: -0.045em;
+  font-family: var(--sans);
+  font-size: clamp(1.55rem, 3.2vw, 2.2rem);
+  font-weight: 650;
+  letter-spacing: -0.04em;
   line-height: 1.05;
-  text-transform: none;
+  text-transform: lowercase;
 }
 
 .about-simple .about-copy,
@@ -525,7 +585,8 @@ button:focus-visible {
 .about-simple .about-copy p,
 .about-simple .about-copy-small p {
   color: var(--body-text);
-  font-size: clamp(0.98rem, 1.22vw, 1.08rem);
+  font-family: var(--sans);
+  font-size: clamp(0.91rem, 1.14vw, 1rem);
   font-weight: 450;
   letter-spacing: 0;
   line-height: 1.72;
@@ -562,11 +623,23 @@ button:focus-visible {
 .about-simple .detail-item h3 {
   display: inline;
   color: var(--hero-text);
+  font-family: var(--display);
   font-size: clamp(0.98rem, 1.3vw, 1.08rem);
-  font-weight: 700;
-  letter-spacing: 0;
+  font-weight: 720;
+  letter-spacing: -0.01em;
   line-height: 1.55;
   text-transform: none;
+}
+
+.about-simple .row-meta h3 a {
+  border-bottom: 1px solid rgba(239, 91, 125, 0.45);
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.about-simple .row-meta h3 a:hover,
+.about-simple .row-meta h3 a:focus-visible {
+  color: var(--accent-hover);
+  border-color: currentColor;
 }
 
 .about-simple .experience-row.interactive-row:hover h3,
@@ -584,6 +657,21 @@ button:focus-visible {
   font-size: clamp(0.82rem, 1vw, 0.92rem);
   line-height: 1.65;
   text-transform: none;
+}
+
+.about-simple .company-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.12rem 0.48rem;
+  align-items: baseline;
+}
+
+.about-simple .company-line span {
+  margin-left: 0;
+}
+
+.about-simple .company-line h3 + span::before {
+  content: "";
 }
 
 .about-simple .row-meta p::before {
@@ -607,7 +695,7 @@ button:focus-visible {
 .about-simple .research-copy p,
 .about-simple .detail-item p {
   color: var(--hero-text);
-  font-size: clamp(0.94rem, 1.13vw, 1rem);
+  font-size: clamp(0.87rem, 1.05vw, 0.93rem);
   line-height: 1.65;
 }
 
@@ -627,6 +715,11 @@ button:focus-visible {
   display: block;
 }
 
+.about-simple .education-row {
+  padding: 0;
+  border: 0;
+}
+
 .about-simple .education-row .education-note {
   max-width: 52rem;
   margin-top: 0.75rem;
@@ -634,6 +727,7 @@ button:focus-visible {
 
 .about-simple .interest-copy ul {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 0.45rem;
   max-width: 52rem;
 }
@@ -659,6 +753,18 @@ button:focus-visible {
 
 .about-simple .spotify-link {
   margin-top: 1rem;
+}
+
+.inline-text-link {
+  color: var(--accent);
+  border-bottom: 1px solid rgba(239, 91, 125, 0.55);
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.inline-text-link:hover,
+.inline-text-link:focus-visible {
+  color: var(--accent-hover);
+  border-color: currentColor;
 }
 
 .section-label {
@@ -785,7 +891,7 @@ button:focus-visible {
 .research-copy p {
   margin: 0;
   color: var(--body-text);
-  font-size: clamp(0.98rem, 1.2vw, 1.15rem);
+  font-size: clamp(0.91rem, 1.12vw, 1.07rem);
   line-height: 1.5;
 }
 
@@ -1075,7 +1181,7 @@ button:focus-visible {
   max-width: 62rem;
   margin: 0.45rem 0 0;
   color: var(--body-text);
-  font-size: clamp(0.98rem, 1.2vw, 1.12rem);
+  font-size: clamp(0.91rem, 1.12vw, 1.05rem);
   line-height: 1.55;
 }
 
@@ -1447,6 +1553,18 @@ button:focus-visible {
   color: var(--accent);
 }
 
+.blog-post-image {
+  width: min(100%, 52rem);
+  padding-bottom: clamp(5rem, 12vw, 9rem);
+}
+
+.blog-post-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--divider-strong);
+}
+
 .writing-form {
   display: grid;
   gap: 1.1rem;
@@ -1640,11 +1758,20 @@ button:focus-visible {
   }
 
   .hero-grid,
-  .hero-name-lockup,
   .content-section,
   .footer-content,
   .footer-minimal {
     grid-template-columns: 1fr;
+  }
+
+  .hero-name-lockup {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .film-frame {
+    width: min(100%, 16rem);
+    margin-top: 1.5rem;
   }
 
   .footer-minimal {

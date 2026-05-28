@@ -14,18 +14,17 @@ export function Experience() {
         {experience.map((item, index) => (
           <Reveal className="experience-row interactive-row" delay={index * 0.06} key={item.company}>
             <div className="row-meta">
-              <h3>{item.company}</h3>
+              <div className="company-line">
+                <h3>
+                  <a href={item.href}>{item.company}</a>
+                </h3>
+                <span>{item.dates}</span>
+                <span>{item.location}</span>
+              </div>
               <p>{item.role}</p>
-              <span>{item.dates}</span>
-              <span>{item.location}</span>
             </div>
             <div className="row-main">
               <p>{item.summary}</p>
-              <ul>
-                {item.highlights.map((highlight) => (
-                  <li key={highlight}>{highlight}</li>
-                ))}
-              </ul>
             </div>
           </Reveal>
         ))}

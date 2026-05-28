@@ -44,7 +44,7 @@ export function WritingForm() {
     setState("success");
     setMessage(
       result.slug
-        ? `Published. Your writing will live at /writings/${result.slug}.`
+        ? `Published. Your post will live at /blog/${result.slug}.`
         : "Published."
     );
   }
@@ -71,7 +71,7 @@ export function WritingForm() {
           name="description"
           required
           rows={3}
-          placeholder="A short summary for the writings page."
+          placeholder="A short summary for the blog page."
         />
       </label>
       <label>

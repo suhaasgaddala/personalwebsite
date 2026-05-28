@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ContactFooter } from "@/components/ContactFooter";
@@ -6,7 +7,7 @@ import { Header } from "@/components/Header";
 import { Reveal } from "@/components/Reveal";
 import { getAllWritings, getWriting } from "@/lib/writings";
 
-type WritingPageProps = {
+type BlogPageProps = {
   params: Promise<{
     slug: string;
   }>;
@@ -20,7 +21,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: WritingPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: BlogPageProps): Promise<Metadata> {
   const { slug } = await params;
   const writing = await getWriting(slug);
 
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: WritingPageProps): Promise<Me
   };
 }
 
-export default async function WritingPage({ params }: WritingPageProps) {
+export default async function BlogPostPage({ params }: BlogPageProps) {
   const { slug } = await params;
   const writing = await getWriting(slug);
 
@@ -60,6 +61,17 @@ export default async function WritingPage({ params }: WritingPageProps) {
             dangerouslySetInnerHTML={{ __html: writing.html }}
           />
         </Reveal>
+        {writing.image && (
+          <Reveal className="blog-post-image">
+            <Image
+              src={writing.image}
+              alt={writing.title}
+              width={800}
+              height={500}
+              className="blog-post-img"
+            />
+          </Reveal>
+        )}
       </main>
       <ContactFooter />
     </>

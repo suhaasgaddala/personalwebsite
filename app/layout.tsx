@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Bebas_Neue } from "next/font/google";
+import { Bebas_Neue, Dancing_Script } from "next/font/google";
 import "./globals.css";
 
 const displayFont = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-display"
+});
+
+const cursiveFont = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-cursive"
 });
 
 export const metadata: Metadata = {
@@ -27,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={displayFont.variable}>{children}</body>
+      <body className={`${displayFont.variable} ${cursiveFont.variable}`}>{children}</body>
     </html>
   );
 }

@@ -7,6 +7,7 @@ export type WritingPost = {
   description: string;
   date: string;
   status: "draft" | "published";
+  image?: string;
   content: string;
   html: string;
 };
@@ -155,6 +156,7 @@ async function readWritingFile(filename: string): Promise<WritingPost | null> {
     description: metadata.description ?? "",
     date: metadata.date ?? "",
     status,
+    image: metadata.image ?? undefined,
     content,
     html: markdownToHtml(content)
   };

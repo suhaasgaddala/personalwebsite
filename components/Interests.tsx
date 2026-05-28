@@ -21,6 +21,11 @@ const interests = [
     title: "Music",
     copy:
       "I spend 80 percent of my day listening to some form of music, whether classical or jazz or indie. It has shaped me to who I am."
+  },
+  {
+    title: "Modeling",
+    copy:
+      "I modeled for a bit under this NYC agency and it was such a unique experience. I plan on doing it again later."
   }
 ];
 

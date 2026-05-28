@@ -4,7 +4,7 @@ import { SectionLabel } from "@/components/SectionLabel";
 export function About() {
   return (
     <section className="content-section section-shell" id="about" aria-labelledby="about-title">
-      <SectionLabel title="About" />
+      <SectionLabel title="About Me" />
       <Reveal className="about-copy" delay={0.08}>
         <p id="about-title">
           I am currently based in Dallas and San Francisco. I am still trying to

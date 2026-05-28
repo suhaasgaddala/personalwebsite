@@ -1,6 +1,6 @@
 export const education = {
   school: "The University of Texas at Dallas",
-  degree: "Computer Science",
+  degree: "Computer Science: Data Science Track, & Minor in Finance.",
   focus: "",
   minor: "",
   note:
