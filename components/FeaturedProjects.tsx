@@ -17,34 +17,23 @@ export function FeaturedProjects() {
     let frame = 0;
 
     const update = () => {
-      const rows = Array.from(
-        section.querySelectorAll<HTMLElement>(".kinetic-project-row")
-      );
       const viewportWidth = window.innerWidth;
       const gutter = Math.max(14, Math.min(38, viewportWidth * 0.024));
+      const leftAnchor = gutter;
+      const rightAnchor = viewportWidth < 640 ? viewportWidth * 0.18 : viewportWidth * 0.34;
+      const rect = section.getBoundingClientRect();
+      const scrollStart = window.innerHeight * 0.92;
+      const scrollDistance = Math.max(
+        window.innerHeight * 0.8,
+        rect.height - window.innerHeight * 0.2
+      );
+      const progress = Math.min(
+        1,
+        Math.max(0, (scrollStart - rect.top) / scrollDistance)
+      );
 
       setPositions(
-        rows.map((row, index) => {
-          const title = row.querySelector<HTMLElement>(".project-title-marquee");
-          if (!title) {
-            return "0px";
-          }
-
-          const rect = row.getBoundingClientRect();
-          const travelStart = window.innerHeight * 0.95;
-          const travelDistance = window.innerHeight * 0.78;
-          const progress = Math.min(
-            1,
-            Math.max(0, (travelStart - rect.top) / travelDistance)
-          );
-          const stagger = (Math.floor(index / 2) % 3) * (viewportWidth < 640 ? 10 : 18);
-          const titleWidth = title.offsetWidth;
-          const leftAnchor = gutter + stagger;
-          const rightAnchor = Math.max(
-            leftAnchor,
-            viewportWidth - titleWidth - gutter - stagger
-          );
-
+        projects.map((_, index) => {
           if (index % 2 === 0) {
             return `${leftAnchor + (rightAnchor - leftAnchor) * progress}px`;
           }

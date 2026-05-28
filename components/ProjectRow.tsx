@@ -28,6 +28,7 @@ export function ProjectRow({ project, x }: ProjectRowProps) {
       <div className="project-title-window">
         <h3 className={titleClassName}>{displayTitle}</h3>
       </div>
+      <p className="kinetic-project-description">{project.description}</p>
     </a>
   );
 }

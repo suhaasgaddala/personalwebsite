@@ -2,8 +2,20 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function Header() {
+  const pathname = usePathname();
+  const navLinks = [
+    { href: "/about", label: "about", active: pathname.startsWith("/about") },
+    { href: "/projects", label: "projects", active: pathname.startsWith("/projects") },
+    {
+      href: "/writings",
+      label: "writings",
+      active: pathname.startsWith("/writings") || pathname.startsWith("/blog")
+    }
+  ];
+
   return (
     <motion.header
       className="site-header"
@@ -17,18 +29,19 @@ export function Header() {
           className="header-link header-name header-logo-link"
           aria-label="Suhaas Gaddala home"
         >
-          <span className="sg-logo-text" aria-hidden="true">sg</span>
+          <span className="sg-logo-text" aria-hidden="true">suhaas</span>
           <span className="sr-only">Suhaas Gaddala</span>
         </Link>
-        <Link href="/about" className="header-link hide-mobile">
-          about
-        </Link>
-        <Link href="/projects" className="header-link hide-mobile">
-          projects
-        </Link>
-        <Link href="/blog" className="header-link hide-mobile">
-          blog
-        </Link>
+        {navLinks.map((link) => (
+          <Link
+            href={link.href}
+            className={`header-link hide-mobile${link.active ? " header-link-active" : ""}`}
+            aria-current={link.active ? "page" : undefined}
+            key={link.href}
+          >
+            {link.label}
+          </Link>
+        ))}
       </nav>
     </motion.header>
   );

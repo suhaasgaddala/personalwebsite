@@ -47,8 +47,8 @@ export default async function WritingPage({ params }: WritingPageProps) {
       <Header />
       <main className="subpage writing-detail-page section-shell">
         <Reveal className="writing-detail-header">
-          <Link href="/blog" className="back-link">
-            blog
+          <Link href="/writings" className="back-link">
+            writings
           </Link>
           <span>{writing.date}</span>
           <h1>{writing.title}</h1>

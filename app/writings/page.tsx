@@ -12,8 +12,7 @@ export default async function WritingsPage() {
       <Header />
       <main className="subpage writings-page section-shell">
         <Reveal className="page-intro">
-          <span>Writings</span>
-          <h1>Small notes, unfinished thoughts, and things I am thinking through.</h1>
+          <h1>Writings</h1>
         </Reveal>
         <div className="writing-list">
           {writings.length > 0 ? (

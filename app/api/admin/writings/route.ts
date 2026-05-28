@@ -1,12 +1,13 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { timingSafeEqual } from "crypto";
 import { NextResponse } from "next/server";
 import { createSlug, createWritingMarkdown } from "@/lib/writings";
 
 export const runtime = "nodejs";
 
 type WritingRequest = {
-  secret?: unknown;
+  action?: unknown;
   title?: unknown;
   description?: unknown;
   content?: unknown;
@@ -15,6 +16,32 @@ type WritingRequest = {
 
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
+}
+
+function getBearerToken(request: Request) {
+  const authorization = request.headers.get("authorization");
+
+  if (!authorization?.startsWith("Bearer ")) {
+    return "";
+  }
+
+  return authorization.slice("Bearer ".length).trim();
+}
+
+function hasValidAuthorKey(request: Request, adminSecret: string) {
+  const submittedSecret = getBearerToken(request);
+
+  if (!submittedSecret) {
+    return false;
+  }
+
+  const submittedBuffer = Buffer.from(submittedSecret);
+  const secretBuffer = Buffer.from(adminSecret);
+
+  return (
+    submittedBuffer.length === secretBuffer.length &&
+    timingSafeEqual(submittedBuffer, secretBuffer)
+  );
 }
 
 async function saveToGitHub(filepath: string, content: string) {
@@ -65,10 +92,14 @@ export async function POST(request: Request) {
     );
   }
 
+  if (!hasValidAuthorKey(request, adminSecret)) {
+    return NextResponse.json({ message: "That author key is not valid." }, { status: 401 });
+  }
+
   const body = (await request.json()) as WritingRequest;
 
-  if (body.secret !== adminSecret) {
-    return NextResponse.json({ message: "That author key is not valid." }, { status: 401 });
+  if (body.action === "verify") {
+    return NextResponse.json({ message: "Author key accepted." });
   }
 
   if (
