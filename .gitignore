@@ -4,3 +4,4 @@ node_modules/
 next-dev*.log
 .env*.local
 *.tsbuildinfo
+.vercel
