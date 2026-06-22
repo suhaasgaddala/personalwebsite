@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { socials } from "@/data/socials";
 
 export function Header() {
   const pathname = usePathname();
@@ -10,7 +11,7 @@ export function Header() {
     { href: "/about", label: "about", active: pathname.startsWith("/about") },
     { href: "/projects", label: "projects", active: pathname.startsWith("/projects") },
     {
-      href: "/writings",
+      href: socials.substack,
       label: "writings",
       active: pathname.startsWith("/writings") || pathname.startsWith("/blog")
     }
