@@ -88,7 +88,7 @@ button:focus-visible {
 
 .header-grid {
   display: grid;
-  grid-template-columns: 1fr auto auto auto;
+  grid-template-columns: 1fr auto auto auto auto;
   gap: 1.25rem;
   align-items: center;
   padding-bottom: 1.05rem;
@@ -1917,6 +1917,614 @@ button:focus-visible {
   text-transform: uppercase;
 }
 
+.agents-section {
+  padding-bottom: clamp(4rem, 9vw, 8rem);
+}
+
+.agents-label-col {
+  align-self: start;
+}
+
+.agents-replay {
+  position: sticky;
+  top: 11.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin-top: 1.2rem;
+  padding: 0;
+  border: 1px solid var(--divider-strong);
+  border-radius: 999px;
+  background: rgba(191, 200, 208, 0.045);
+  color: var(--body-text);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    transform 380ms ease;
+}
+
+.agents-replay:hover {
+  border-color: var(--accent);
+  color: var(--accent-hover);
+  transform: rotate(180deg);
+}
+
+.agents-replay:active {
+  transform: rotate(360deg) scale(0.9);
+}
+
+.agents-demo {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr 1fr;
+  grid-template-rows: 232px 232px 76px;
+  gap: 10px;
+}
+
+.agent-card {
+  position: relative;
+  overflow: hidden;
+  padding: 2.3rem 1.15rem 1.15rem;
+  border: 1px solid var(--divider);
+  background: rgba(191, 200, 208, 0.03);
+}
+
+.agent-card-label {
+  position: absolute;
+  top: 0.75rem;
+  left: 1.15rem;
+  z-index: 5;
+  color: var(--muted-text);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.chat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  grid-row: 1 / 3;
+}
+
+.chat-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transform: translateY(158px);
+  animation: ag-chat-shift 0.6s ease forwards;
+  animation-delay: 4.5s;
+}
+
+.chat-user {
+  align-self: flex-end;
+  max-width: 82%;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid rgba(239, 91, 125, 0.4);
+  background: rgba(239, 91, 125, 0.13);
+  color: var(--hero-text);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  opacity: 0;
+  animation: ag-slide-up 0.45s ease forwards;
+}
+
+.chat-thinking {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  color: var(--muted-text);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: lowercase;
+  opacity: 0;
+  animation: ag-fade-in 0.3s ease forwards;
+}
+
+.chat-dots {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.chat-dots span {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--muted-text);
+  animation: ag-dot-pulse 1.2s ease infinite;
+}
+
+.chat-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.chat-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.chat-answer {
+  margin: 0;
+  color: var(--body-text);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.chat-token {
+  display: inline;
+  opacity: 0;
+  filter: blur(4px);
+  animation: ag-token-in 0.25s ease forwards;
+}
+
+.chat-cursor {
+  display: inline-block;
+  width: 1.5px;
+  height: 0.85em;
+  margin-left: 1px;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  opacity: 0;
+  animation:
+    ag-fade-in 0.05s ease forwards,
+    ag-cursor-blink 0.55s step-end infinite;
+}
+
+.chat-actions {
+  display: flex;
+  gap: 0.3rem;
+  opacity: 0;
+  animation: ag-fade-in 0.3s ease forwards;
+}
+
+.chat-actions button {
+  padding: 0.18rem 0.45rem;
+  border: 1px solid var(--divider);
+  background: transparent;
+  color: var(--muted-text);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.chat-actions button:hover {
+  border-color: var(--accent);
+  color: var(--accent-hover);
+}
+
+.think-toggle {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  margin-bottom: 0.55rem;
+  color: var(--body-text);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  opacity: 0;
+  animation: ag-fade-in 0.35s ease forwards;
+}
+
+.think-chevron {
+  display: inline-block;
+  font-size: 0.55rem;
+  animation: ag-chevron-open 0.3s ease forwards;
+  animation-delay: 1.3s;
+}
+
+.think-body {
+  max-height: 0;
+  overflow: hidden;
+  animation: ag-expand 0.5s ease forwards;
+  animation-delay: 1.3s;
+}
+
+.think-line {
+  margin: 0 0 0.3rem;
+  color: var(--muted-text);
+  font-size: 0.76rem;
+  font-style: italic;
+  line-height: 1.55;
+  opacity: 0;
+  filter: blur(3px);
+  animation: ag-token-in 0.35s ease forwards;
+}
+
+.composer-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.composer-box {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--divider-strong);
+  background: rgba(191, 200, 208, 0.045);
+  opacity: 0;
+  animation: ag-fade-in 0.4s ease forwards;
+}
+
+.composer-text {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 1.3rem;
+  overflow: hidden;
+  color: var(--hero-text);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.composer-text span {
+  display: inline-block;
+  width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: ag-type 1.1s steps(20) forwards;
+  animation-delay: 1s;
+}
+
+.composer-text span::after {
+  content: "";
+  display: inline-block;
+  width: 1.5px;
+  height: 0.85em;
+  margin-left: 1px;
+  background: var(--accent);
+  vertical-align: middle;
+  animation: ag-cursor-blink 0.55s step-end infinite;
+}
+
+.composer-send {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: var(--accent);
+  opacity: 0.3;
+  animation: ag-send-pop 0.35s ease 2.3s both;
+}
+
+.composer-send svg {
+  width: 11px;
+  height: 11px;
+  fill: var(--bg-deep);
+}
+
+.composer-hints {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  opacity: 0;
+  animation: ag-fade-in 0.3s ease forwards;
+}
+
+.composer-hints span {
+  color: var(--muted-text);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+}
+
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tool-call {
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--divider);
+  background: rgba(191, 200, 208, 0.045);
+  opacity: 0;
+  animation: ag-slide-up 0.4s ease forwards;
+}
+
+.tool-call-head {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  color: var(--body-text);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+}
+
+.tool-call-state {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  margin-left: auto;
+}
+
+.tool-spinner {
+  position: absolute;
+  inset: 2px;
+  border: 1.5px solid var(--divider-strong);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation:
+    ag-spin 0.7s linear infinite,
+    ag-fade-out 0.2s ease forwards;
+}
+
+.tool-check {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.62rem;
+  opacity: 0;
+  animation: ag-scale-in 0.3s ease forwards;
+}
+
+.tool-call-result {
+  max-height: 0;
+  overflow: hidden;
+  color: var(--muted-text);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  line-height: 1.5;
+  opacity: 0;
+  animation: ag-tool-expand 0.4s ease forwards;
+}
+
+.roster-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.roster-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.35rem 0.5rem;
+  color: var(--body-text);
+  font-size: 0.72rem;
+  opacity: 0;
+  animation: ag-slide-up 0.35s ease forwards;
+  transition: background 150ms ease;
+}
+
+.roster-row:hover,
+.roster-row-active {
+  background: rgba(191, 200, 208, 0.05);
+}
+
+.roster-dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.roster-dot-on {
+  background: var(--accent);
+  animation: ag-dot-glow 2s ease infinite;
+}
+
+.roster-dot-think {
+  background: var(--hero-text);
+  animation: ag-dot-pulse 1s ease infinite;
+}
+
+.roster-dot-off {
+  background: var(--muted-text);
+  opacity: 0.45;
+}
+
+.roster-name {
+  flex: 1;
+  font-family: var(--mono);
+}
+
+.roster-status {
+  color: var(--muted-text);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+}
+
+.pipe-card {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  padding-top: 1.15rem;
+}
+
+.pipe-track {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.pipe-step {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  color: var(--muted-text);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: ag-step-on 0.4s ease forwards;
+}
+
+.pipe-node {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.5rem;
+}
+
+.pipe-check {
+  opacity: 0;
+  animation: ag-scale-in 0.3s ease forwards;
+}
+
+.pipe-line {
+  flex: 1;
+  min-width: 16px;
+  height: 1.5px;
+  margin: 0 0.4rem;
+  background: var(--divider);
+  animation: ag-line-fill 0.4s ease forwards;
+}
+
+@keyframes ag-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ag-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes ag-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ag-token-in {
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes ag-dot-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes ag-dot-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 91, 125, 0.45);
+  }
+
+  50% {
+    box-shadow: 0 0 0 4px rgba(239, 91, 125, 0);
+  }
+}
+
+@keyframes ag-cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes ag-chat-shift {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes ag-chevron-open {
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes ag-expand {
+  to {
+    max-height: 8rem;
+  }
+}
+
+@keyframes ag-type {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes ag-send-pop {
+  from {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ag-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ag-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ag-tool-expand {
+  to {
+    max-height: 2.6rem;
+    margin-top: 0.35rem;
+    opacity: 1;
+  }
+}
+
+@keyframes ag-step-on {
+  to {
+    color: var(--accent);
+  }
+}
+
+@keyframes ag-line-fill {
+  to {
+    background: var(--accent);
+  }
+}
+
 @media (min-width: 1180px) {
   .hero-name {
     max-width: 100%;
@@ -1995,6 +2603,35 @@ button:focus-visible {
 
   .section-label {
     position: static;
+  }
+
+  .agents-replay {
+    position: static;
+    margin-bottom: 1.6rem;
+  }
+
+  .agents-demo {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .chat-card {
+    grid-row: auto;
+    min-height: 380px;
+  }
+
+  .pipe-card {
+    grid-column: auto;
+  }
+
+  .pipe-track {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 0;
+  }
+
+  .pipe-line {
+    display: none;
   }
 
   .experience-row,

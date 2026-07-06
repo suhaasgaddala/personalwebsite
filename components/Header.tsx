@@ -8,6 +8,7 @@ import { socials } from "@/data/socials";
 export function Header() {
   const pathname = usePathname();
   const navLinks = [
+    { href: "/#agents", label: "agents", active: false },
     { href: "/about", label: "about", active: pathname.startsWith("/about") },
     { href: "/projects", label: "projects", active: pathname.startsWith("/projects") },
     {
