@@ -6,3 +6,4 @@ next-dev*.log
 *.tsbuildinfo
 .vercel
 .env*
+.DS_Store
