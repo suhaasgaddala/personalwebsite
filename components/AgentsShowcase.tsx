@@ -104,11 +104,9 @@ export function AgentsShowcase() {
         <div className={`agents-label-sticky${inView ? " agents-label-in" : ""}`}>
           <h2 className="agents-title">
             <span className="agents-title-mask">
-              <span className="agents-title-text">agents</span>
+              <span className="agents-title-text">Agents</span>
             </span>
           </h2>
-          <p className="agents-sub">plan · act · verify — on loop</p>
-          <p className="agents-status">[ 4 agents · 1 running · loop healthy ]</p>
           <button
             type="button"
             className="agents-replay"
@@ -241,7 +239,11 @@ export function AgentsShowcase() {
                       />
                     ) : null}
                     <span className="pipe-step" style={{ animationDelay: `${1 + index * 1.5}s` }}>
-                      <span className="pipe-node" aria-hidden="true">
+                      <span
+                        className="pipe-node"
+                        style={{ animationDelay: `${2.2 + index * 1.5}s` }}
+                        aria-hidden="true"
+                      >
                         <span
                           className="pipe-check"
                           style={{ animationDelay: `${2.2 + index * 1.5}s` }}
