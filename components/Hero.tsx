@@ -1,37 +1,54 @@
-import { PhotoStack } from "@/components/PhotoStack";
+import Image from "next/image";
 import type { CSSProperties } from "react";
 
-const firstName = "SUHAAS";
-const lastName = "GADDALA";
-
-function AnimatedWord({ text, delay = 0 }: { text: string; delay?: number }) {
-  return (
-    <span aria-hidden="true" className="hero-word">
-      {text.split("").map((letter, index) => (
-        <span
-          className="hero-letter"
-          style={{ "--letter-delay": `${delay + index * 0.055}s` } as CSSProperties}
-          key={`${text}-${letter}-${index}`}
-        >
-          {letter}
-        </span>
-      ))}
-    </span>
-  );
-}
+const messages = [
+  { text: "hello, world", typingAt: 0.6, sendAt: 1.9 },
+  { text: "im suhaas gaddala", typingAt: 2.7, sendAt: 4.3 },
+  { text: "scroll down for more stuff", typingAt: 5.1, sendAt: 6.8 }
+];
 
 export function Hero() {
   return (
-    <section className="hero home-hero section-shell" id="top" aria-labelledby="hero-title">
-      <div className="hero-name-lockup">
-        <h1 className="hero-name home-name" id="hero-title" aria-label="Suhaas Gaddala">
-          <span className="sr-only">Suhaas Gaddala</span>
-          <AnimatedWord text={firstName} delay={0.12} />
-          <span className="hero-last">
-            <AnimatedWord text={lastName} delay={0.48} />
+    <section className="hero home-hero section-shell msg-hero" id="top" aria-labelledby="hero-title">
+      <h1 className="sr-only" id="hero-title">
+        Suhaas Gaddala
+      </h1>
+      <div className="msg-thread">
+        <div className="msg-contact">
+          <span className="msg-avatar">
+            <Image
+              src="/suhaas-photo.png"
+              alt="Suhaas in a film-style portrait"
+              fill
+              sizes="96px"
+              priority
+            />
           </span>
-        </h1>
-        <PhotoStack />
+          <span className="msg-contact-name">suhaas</span>
+        </div>
+        <div className="msg-list">
+          {messages.map((message) => (
+            <div className="msg-slot" key={message.text}>
+              <span
+                className="msg-typing"
+                style={
+                  {
+                    "--typing-in": `${message.typingAt}s`,
+                    "--typing-out": `${message.sendAt}s`
+                  } as CSSProperties
+                }
+                aria-hidden="true"
+              >
+                <span />
+                <span />
+                <span />
+              </span>
+              <p className="msg-bubble" style={{ animationDelay: `${message.sendAt}s` }}>
+                {message.text}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
