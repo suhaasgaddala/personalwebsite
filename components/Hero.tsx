@@ -20,7 +20,7 @@ export function Hero() {
               src="/suhaas-photo.png"
               alt="Suhaas in a film-style portrait"
               fill
-              sizes="96px"
+              sizes="128px"
               priority
             />
           </span>
@@ -50,6 +50,7 @@ export function Hero() {
           ))}
         </div>
       </div>
+      <span className="msg-scroll-cue" aria-hidden="true" />
     </section>
   );
 }
