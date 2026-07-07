@@ -2,9 +2,9 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 
 const messages = [
-  { text: "hello, world", typingAt: 0.6, sendAt: 1.9 },
-  { text: "im suhaas gaddala", typingAt: 2.7, sendAt: 4.3 },
-  { text: "scroll down for more stuff", typingAt: 5.1, sendAt: 6.8 }
+  { text: "hello, world", typingAt: 0.3, sendAt: 0.95 },
+  { text: "im suhaas gaddala", typingAt: 1.35, sendAt: 2.15 },
+  { text: "scroll down for more stuff", typingAt: 2.55, sendAt: 3.4 }
 ];
 
 export function Hero() {

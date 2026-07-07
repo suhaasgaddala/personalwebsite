@@ -135,20 +135,14 @@ export function Header() {
     const updateActiveSection = () => {
       frame = 0;
       const scanLine = window.innerHeight * 0.58;
-      const sectionRects = sections.map((section) => ({
-        id: section.id,
-        rect: section.getBoundingClientRect()
-      }));
-      const current =
-        [...sectionRects]
-          .reverse()
-          .find(({ rect }) => rect.top <= scanLine && rect.bottom >= scanLine) ??
-        sectionRects
-          .filter(({ rect }) => rect.bottom > 0 && rect.top < window.innerHeight)
-          .sort(
-            (a, b) =>
-              Math.abs(a.rect.top - scanLine) - Math.abs(b.rect.top - scanLine)
-          )[0];
+      const viewportAnchor = window.scrollY + scanLine;
+      const anchors = sections
+        .map((section) => ({
+          id: section.id,
+          top: section.getBoundingClientRect().top + window.scrollY
+        }))
+        .sort((a, b) => a.top - b.top);
+      const current = anchors.filter((anchor) => anchor.top <= viewportAnchor).at(-1);
 
       setActiveSection(current?.id ?? "");
     };
