@@ -105,13 +105,14 @@ export function PhotoStack() {
                   quality={72}
                 />
               </span>
+              {isActive ? (
+                <span className="photo-card-caption" aria-live="polite">
+                  {card.caption}
+                </span>
+              ) : null}
             </button>
           );
         })}
-      </div>
-
-      <div className="photo-stack-caption" aria-live="polite">
-        <p>{photoCards[activeIndex].caption}</p>
       </div>
     </div>
   );

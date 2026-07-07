@@ -20,9 +20,14 @@ export function FeaturedProjects() {
 
     const update = () => {
       const viewportWidth = window.innerWidth;
+      if (viewportWidth < 640) {
+        rows.forEach((row) => row.style.removeProperty("--lane-x"));
+        return;
+      }
+
       const gutter = Math.max(14, Math.min(38, viewportWidth * 0.024));
       const leftAnchor = gutter;
-      const rightAnchor = viewportWidth < 640 ? viewportWidth * 0.18 : viewportWidth * 0.34;
+      const rightAnchor = viewportWidth * 0.34;
       const rect = section.getBoundingClientRect();
       const scrollStart = window.innerHeight * 0.92;
       const scrollDistance = Math.max(

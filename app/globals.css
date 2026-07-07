@@ -298,7 +298,6 @@ button:focus-visible {
   position: relative;
   width: 100%;
   aspect-ratio: 0.76;
-  margin-bottom: clamp(3rem, 4vw, 4.4rem);
   overscroll-behavior: contain;
 }
 
@@ -336,6 +335,27 @@ button:focus-visible {
   mix-blend-mode: multiply;
 }
 
+.photo-card-caption {
+  position: absolute;
+  right: clamp(0.8rem, 1.2vw, 1.1rem);
+  bottom: clamp(0.46rem, 0.8vw, 0.78rem);
+  left: clamp(0.8rem, 1.2vw, 1.1rem);
+  z-index: 2;
+  display: block;
+  overflow: hidden;
+  color: #17233a;
+  font-family: var(--mono);
+  font-size: clamp(0.58rem, 0.72vw, 0.82rem);
+  font-style: italic;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  line-height: 1.18;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
 .photo-card[aria-pressed="true"] {
   cursor: default;
 }
@@ -361,21 +381,6 @@ button:focus-visible {
 
 .photo-card:nth-child(1) .photo-card-image img {
   object-position: center top;
-}
-
-.photo-stack-caption {
-  position: relative;
-  z-index: 4;
-  color: var(--body-text);
-  font-family: var(--mono);
-}
-
-.photo-stack-caption p {
-  margin: 0;
-  color: var(--hero-text);
-  font-size: clamp(0.78rem, 1vw, 0.95rem);
-  font-style: italic;
-  line-height: 1.6;
 }
 
 .hero-photo {
@@ -2806,12 +2811,35 @@ button:focus-visible {
 }
 
 @media (max-width: 980px) {
+  .site-header {
+    background: rgba(16, 24, 39, 0.96);
+    backdrop-filter: none;
+  }
+
   .header-grid {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto repeat(4, max-content);
+    gap: clamp(0.7rem, 3vw, 1.1rem);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .header-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    white-space: nowrap;
   }
 
   .hide-mobile {
-    display: none;
+    display: inline-flex;
   }
 
   .hero-grid,
@@ -2973,13 +3001,22 @@ button:focus-visible {
   }
 
   .header-grid {
-    gap: 0.65rem;
     font-size: 0.7rem;
+    padding-bottom: 0.65rem;
   }
 
   .hero {
     min-height: calc(100vh - 4rem);
-    padding-top: 3.5rem;
+    padding-top: 2.2rem;
+  }
+
+  .home-hero {
+    min-height: auto;
+    justify-content: flex-start;
+  }
+
+  .hero-letter {
+    filter: none;
   }
 
   .hero-name {
@@ -2998,8 +3035,9 @@ button:focus-visible {
   }
 
   .photo-stack {
-    width: min(74vw, 16rem);
-    justify-self: start;
+    width: min(66vw, 15rem);
+    margin-inline: auto;
+    justify-self: center;
   }
 
   .hero-minor {
@@ -3078,30 +3116,49 @@ button:focus-visible {
   }
 
   .kinetic-project-row {
-    min-height: clamp(9.5rem, 20vh, 12rem);
+    display: grid;
+    min-height: auto;
+    gap: 0.95rem;
+    align-items: start;
+    padding: 1.35rem var(--page-pad) 1.5rem;
   }
 
-  .kinetic-project-row .project-title-marquee {
-    font-size: clamp(3.2rem, 15vw, 5.2rem);
+  .kinetic-project-row .project-title-window {
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .kinetic-project-row .project-title-marquee,
+  .kinetic-project-row .project-title-marquee-medium,
+  .kinetic-project-row .project-title-marquee-long {
+    width: 100%;
+    min-width: 0;
+    color: var(--hero-text);
+    font-size: clamp(3rem, 14vw, 4.8rem);
+    line-height: 0.86;
+    white-space: normal;
+    transform: none;
   }
 
   .kinetic-project-row .project-title-marquee-medium {
-    font-size: clamp(2.7rem, 12.4vw, 4rem);
+    font-size: clamp(2.5rem, 11.6vw, 4rem);
   }
 
   .kinetic-project-row .project-title-marquee-long {
-    font-size: clamp(1.85rem, 7.2vw, 3rem);
+    font-size: clamp(2rem, 9vw, 3rem);
   }
 
   .kinetic-project-description,
   .kinetic-project-row:nth-child(even) .kinetic-project-description {
-    left: var(--page-pad);
-    right: var(--page-pad);
-    bottom: 0.9rem;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
     max-width: none;
     border-right: 0;
     border-left: 1px solid var(--rudy-gold-strong);
-    font-size: 0.7rem;
+    font-size: 0.78rem;
     text-align: left;
   }
 
