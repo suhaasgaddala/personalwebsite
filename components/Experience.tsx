@@ -24,7 +24,9 @@ export function Experience() {
               <p>{item.role}</p>
             </div>
             <div className="row-main">
-              <p>{item.summary}</p>
+              {item.summary.split(/\n{2,}/).map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
           </Reveal>
         ))}

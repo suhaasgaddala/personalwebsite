@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Bebas_Neue } from "next/font/google";
+import { Bebas_Neue, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const displayFont = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-display"
+});
+
+const headingFont = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-heading-serif"
 });
 
 export const metadata: Metadata = {
@@ -30,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={displayFont.variable}>{children}</body>
+      <body className={`${displayFont.variable} ${headingFont.variable}`}>{children}</body>
     </html>
   );
 }
