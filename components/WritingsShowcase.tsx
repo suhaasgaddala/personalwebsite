@@ -31,24 +31,20 @@ export async function WritingsShowcase() {
           </div>
         ) : (
           <div className="writing-imessage">
-            <div className="writing-typing-row" aria-hidden="true">
-              <span className="writing-typing">
+            <div className="writing-message-slot">
+              <span className="writing-typing" aria-hidden="true">
                 <span />
                 <span />
                 <span />
               </span>
-            </div>
-            <div className="writing-message-row">
               <p className="writing-message">currently my writings are on substack</p>
             </div>
-            <div className="writing-typing-row" aria-hidden="true">
-              <span className="writing-typing">
+            <div className="writing-message-slot">
+              <span className="writing-typing" aria-hidden="true">
                 <span />
                 <span />
                 <span />
               </span>
-            </div>
-            <div className="writing-message-row">
               <p className="writing-message">
                 here&apos;s the link:
                 <br />

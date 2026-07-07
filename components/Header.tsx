@@ -66,7 +66,11 @@ function CommandIcon({ name }: { name: CommandIconName }) {
     x: "𝕏"
   };
 
-  return <span aria-hidden="true">{symbolByName[name]}</span>;
+  return (
+    <span className={name === "writings" ? "command-writing-icon" : undefined} aria-hidden="true">
+      {symbolByName[name]}
+    </span>
+  );
 }
 
 export function Header() {
@@ -126,21 +130,48 @@ export function Header() {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    let frame = 0;
 
-        if (visible?.target.id) {
-          setActiveSection(visible.target.id);
-        }
-      },
-      { rootMargin: "-30% 0px -45% 0px", threshold: 0 }
-    );
+    const updateActiveSection = () => {
+      frame = 0;
+      const scanLine = window.innerHeight * 0.58;
+      const sectionRects = sections.map((section) => ({
+        id: section.id,
+        rect: section.getBoundingClientRect()
+      }));
+      const current =
+        [...sectionRects]
+          .reverse()
+          .find(({ rect }) => rect.top <= scanLine && rect.bottom >= scanLine) ??
+        sectionRects
+          .filter(({ rect }) => rect.bottom > 0 && rect.top < window.innerHeight)
+          .sort(
+            (a, b) =>
+              Math.abs(a.rect.top - scanLine) - Math.abs(b.rect.top - scanLine)
+          )[0];
 
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+      setActiveSection(current?.id ?? "");
+    };
+
+    const scheduleActiveSectionUpdate = () => {
+      if (frame) {
+        return;
+      }
+
+      frame = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", scheduleActiveSectionUpdate, { passive: true });
+    window.addEventListener("resize", scheduleActiveSectionUpdate);
+    window.addEventListener("hashchange", scheduleActiveSectionUpdate);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleActiveSectionUpdate);
+      window.removeEventListener("resize", scheduleActiveSectionUpdate);
+      window.removeEventListener("hashchange", scheduleActiveSectionUpdate);
+    };
   }, [pathname]);
 
   useEffect(() => {
@@ -191,25 +222,22 @@ export function Header() {
     return () => document.removeEventListener("pointerdown", closeOnOutsidePointer, true);
   }, [isCommandOpen]);
 
+  const homeSection = pathname === "/" ? activeSection || hash.replace("#", "") : "";
   const navLinks = [
     {
       href: "/#agents",
       label: "agents",
-      active: pathname === "/" && (hash === "#agents" || activeSection === "agents")
+      active: homeSection === "agents"
     },
     {
       href: "/#about",
       label: "about",
-      active:
-        pathname.startsWith("/about") ||
-        (pathname === "/" && (hash === "#about" || activeSection === "about"))
+      active: pathname.startsWith("/about") || homeSection === "about"
     },
     {
       href: "/#projects",
       label: "projects",
-      active:
-        pathname.startsWith("/projects") ||
-        (pathname === "/" && (hash === "#projects" || activeSection === "projects"))
+      active: pathname.startsWith("/projects") || homeSection === "projects"
     },
     {
       href: "/#writings",
@@ -217,7 +245,7 @@ export function Header() {
       active:
         pathname.startsWith("/writings") ||
         pathname.startsWith("/blog") ||
-        (pathname === "/" && (hash === "#writings" || activeSection === "writings"))
+        homeSection === "writings"
     }
   ];
 

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Suhaas Gaddala, a full stack developer building AI infrastructure, cloud-native systems, machine learning pipelines, backend services, and data-driven products.",
   icons: {
-    icon: "/suhaas-profile.svg"
+    icon: [{ url: "/favicon.png", type: "image/png" }]
   },
   openGraph: {
     title: "suhaas.cv",
