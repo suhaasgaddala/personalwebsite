@@ -2,11 +2,10 @@
 
 import { ProjectRow } from "@/components/ProjectRow";
 import { projects } from "@/data/projects";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export function FeaturedProjects() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [positions, setPositions] = useState(() => projects.map(() => "0px"));
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -15,6 +14,9 @@ export function FeaturedProjects() {
     }
 
     let frame = 0;
+    const rows = Array.from(
+      section.querySelectorAll<HTMLElement>(".kinetic-project-row")
+    );
 
     const update = () => {
       const viewportWidth = window.innerWidth;
@@ -32,15 +34,14 @@ export function FeaturedProjects() {
         Math.max(0, (scrollStart - rect.top) / scrollDistance)
       );
 
-      setPositions(
-        projects.map((_, index) => {
-          if (index % 2 === 0) {
-            return `${leftAnchor + (rightAnchor - leftAnchor) * progress}px`;
-          }
+      rows.forEach((row, index) => {
+        const x =
+          index % 2 === 0
+            ? leftAnchor + (rightAnchor - leftAnchor) * progress
+            : rightAnchor + (leftAnchor - rightAnchor) * progress;
 
-          return `${rightAnchor + (leftAnchor - rightAnchor) * progress}px`;
-        })
-      );
+        row.style.setProperty("--lane-x", `${x}px`);
+      });
     };
 
     const onScroll = () => {
@@ -70,15 +71,9 @@ export function FeaturedProjects() {
         Projects
       </h2>
       <div className="kinetic-project-list">
-        {projects.map((project, index) => {
-          return (
-            <ProjectRow
-              project={project}
-              x={positions[index] ?? "0px"}
-              key={project.name}
-            />
-          );
-        })}
+        {projects.map((project) => (
+          <ProjectRow project={project} key={project.name} />
+        ))}
       </div>
     </section>
   );

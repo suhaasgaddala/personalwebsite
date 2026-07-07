@@ -1,21 +1,43 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { type CSSProperties, type HTMLAttributes, useEffect, useRef, useState } from "react";
 
-type RevealProps = HTMLMotionProps<"div"> & {
+type RevealProps = HTMLAttributes<HTMLDivElement> & {
   delay?: number;
 };
 
-export function Reveal({ children, delay = 0, ...props }: RevealProps) {
+export function Reveal({ children, className, delay = 0, style, ...props }: RevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || isVisible) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -80px" }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [isVisible]);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay }}
+    <div
+      className={`reveal${isVisible ? " reveal-visible" : ""}${className ? ` ${className}` : ""}`}
+      ref={ref}
+      style={{ "--reveal-delay": `${delay}s`, ...style } as CSSProperties}
       {...props}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

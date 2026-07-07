@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "suhaas.cv",
   description:
     "Portfolio of Suhaas Gaddala, a full stack developer building AI infrastructure, cloud-native systems, machine learning pipelines, backend services, and data-driven products.",
+  icons: {
+    icon: "/suhaas-profile.svg"
+  },
   openGraph: {
     title: "suhaas.cv",
     description:

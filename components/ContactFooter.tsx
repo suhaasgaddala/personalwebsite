@@ -1,5 +1,3 @@
-"use client";
-
 import { socials } from "@/data/socials";
 
 function LinkedInIcon() {

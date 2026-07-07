@@ -86,6 +86,13 @@ button:focus-visible {
   backdrop-filter: blur(14px);
 }
 
+.header-enter {
+  opacity: 0;
+  transform: translate3d(0, -18px, 0);
+  animation: header-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: opacity, transform;
+}
+
 .header-grid {
   display: grid;
   grid-template-columns: 1fr auto auto auto auto;
@@ -278,6 +285,14 @@ button:focus-visible {
   margin-bottom: clamp(0.2rem, 1vw, 1.1rem);
 }
 
+.photo-stack-enter {
+  opacity: 0;
+  transform: perspective(900px) translate3d(0, 48px, 0) rotateX(-14deg) scale(0.94);
+  transform-origin: 50% 100%;
+  animation: photo-stack-enter 0.95s cubic-bezier(0.34, 1.56, 0.64, 1) 0.85s forwards;
+  will-change: opacity, transform;
+}
+
 .photo-stack-stage {
   position: relative;
   width: 100%;
@@ -300,8 +315,11 @@ button:focus-visible {
   box-shadow:
     0 1.4rem 3rem rgba(0, 0, 0, 0.35),
     0 0.18rem 0.5rem rgba(0, 0, 0, 0.18);
+  contain: layout paint;
   cursor: pointer;
   transform-origin: 50% 82%;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .photo-card::after {
@@ -324,20 +342,6 @@ button:focus-visible {
 .photo-card:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 8px;
-}
-
-.photo-tape {
-  position: absolute;
-  top: -0.9rem;
-  left: 50%;
-  z-index: 2;
-  width: clamp(4rem, 8vw, 6.3rem);
-  height: clamp(1rem, 1.8vw, 1.4rem);
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.35), rgba(210, 196, 162, 0.22)),
-    rgba(230, 213, 169, 0.62);
-  box-shadow: 0 0.25rem 0.9rem rgba(0, 0, 0, 0.16);
-  transform: translateX(-50%) rotate(-1deg);
 }
 
 .photo-card-image {
@@ -420,7 +424,6 @@ button:focus-visible {
 
 .hero-name span {
   max-width: 100%;
-  filter: drop-shadow(0 24px 50px rgba(0, 0, 0, 0.16));
 }
 
 .hero-word,
@@ -434,10 +437,18 @@ button:focus-visible {
 
 .hero-word {
   white-space: nowrap;
+  perspective: 700px;
 }
 
 .hero-letter {
   display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 0.5em, 0) rotateX(-88deg);
+  transform-origin: 50% 88%;
+  filter: blur(8px);
+  animation: hero-letter-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: var(--letter-delay, 0s);
+  text-shadow: 0 24px 50px rgba(0, 0, 0, 0.16);
   transition:
     color 180ms ease,
     opacity 180ms ease,
@@ -668,6 +679,33 @@ button:focus-visible {
   gap: clamp(2rem, 7vw, 8rem);
   padding-block: clamp(3.5rem, 7vw, 6.5rem);
   border-top: 1px solid var(--divider);
+}
+
+.content-section,
+.kinetic-project-row,
+.agent-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 420px;
+}
+
+.agent-card,
+.photo-card,
+.kinetic-project-row {
+  contain: layout paint;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .subpage {
@@ -930,6 +968,11 @@ button:focus-visible {
   letter-spacing: -0.075em;
   line-height: 0.9;
   white-space: pre-line;
+}
+
+.section-label-title-case h2 {
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 .about-copy {
@@ -1421,6 +1464,28 @@ button:focus-visible {
 
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@keyframes header-enter {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes photo-stack-enter {
+  to {
+    opacity: 1;
+    transform: perspective(900px) translate3d(0, 0, 0) rotateX(0) scale(1);
+  }
+}
+
+@keyframes hero-letter-in {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateX(0);
+    filter: blur(0);
   }
 }
 
@@ -1918,22 +1983,100 @@ button:focus-visible {
 }
 
 .agents-section {
+  position: relative;
   padding-bottom: clamp(4rem, 9vw, 8rem);
+}
+
+.agents-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(42rem 26rem at 74% 28%, rgba(239, 91, 125, 0.055), transparent 70%),
+    radial-gradient(rgba(191, 200, 208, 0.09) 0.5px, transparent 0.9px);
+  background-size: auto, 24px 24px;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
 }
 
 .agents-label-col {
   align-self: start;
 }
 
-.agents-replay {
+.agents-label-sticky {
   position: sticky;
-  top: 11.5rem;
+  top: 7rem;
+}
+
+.agents-title {
+  margin: 0;
+  color: var(--hero-text);
+  font-family: var(--display);
+  font-size: clamp(3.6rem, 7vw, 9.5rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 0.8;
+  text-transform: uppercase;
+  transform: scaleY(1.06);
+  transform-origin: left top;
+}
+
+.agents-title-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.agents-title-text {
+  display: inline-block;
+  transform: translateY(115%);
+  transition: transform 900ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.agents-label-in .agents-title-text {
+  transform: translateY(0);
+}
+
+.agents-sub {
+  margin: 1.1rem 0 0;
+  color: var(--body-text);
+  font-family: var(--mono);
+  font-size: clamp(0.78rem, 1vw, 0.95rem);
+  text-transform: lowercase;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 600ms ease 450ms,
+    transform 600ms ease 450ms;
+}
+
+.agents-label-in .agents-sub {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.agents-status {
+  margin: 0.45rem 0 0;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: clamp(0.66rem, 0.85vw, 0.8rem);
+  text-transform: lowercase;
+  opacity: 0;
+  transition: opacity 500ms ease 650ms;
+}
+
+.agents-label-in .agents-status {
+  opacity: 1;
+}
+
+.agents-replay {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 2.1rem;
   height: 2.1rem;
-  margin-top: 1.2rem;
+  margin-top: 1.3rem;
   padding: 0;
   border: 1px solid var(--divider-strong);
   border-radius: 999px;
@@ -1941,10 +2084,16 @@ button:focus-visible {
   color: var(--body-text);
   cursor: pointer;
   font-size: 0.95rem;
+  opacity: 0;
   transition:
     color 180ms ease,
     border-color 180ms ease,
-    transform 380ms ease;
+    transform 380ms ease,
+    opacity 500ms ease 800ms;
+}
+
+.agents-label-in .agents-replay {
+  opacity: 1;
 }
 
 .agents-replay:hover {
@@ -1953,15 +2102,38 @@ button:focus-visible {
   transform: rotate(180deg);
 }
 
-.agents-replay:active {
-  transform: rotate(360deg) scale(0.9);
-}
-
 .agents-demo {
+  position: relative;
   display: grid;
   grid-template-columns: 1.55fr 1fr 1fr;
   grid-template-rows: 232px 232px 76px;
   gap: 10px;
+}
+
+.agents-demo-live {
+  perspective: 1200px;
+}
+
+.agents-demo-live .agent-card {
+  opacity: 0;
+  transform-origin: 50% 72%;
+  animation: ag-card-in 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: var(--card-delay, 0s);
+  will-change: transform, opacity;
+}
+
+.agents-demo-live::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 6;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(239, 91, 125, 0.75), transparent);
+  opacity: 0;
+  pointer-events: none;
+  animation: ag-scan 1.9s ease-in-out 0.25s forwards;
 }
 
 .agent-card {
@@ -1969,7 +2141,59 @@ button:focus-visible {
   overflow: hidden;
   padding: 2.3rem 1.15rem 1.15rem;
   border: 1px solid var(--divider);
-  background: rgba(191, 200, 208, 0.03);
+  background:
+    linear-gradient(180deg, rgba(191, 200, 208, 0.045), rgba(191, 200, 208, 0.02));
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.agent-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent));
+  background-position:
+    0 0,
+    0 0,
+    100% 0,
+    100% 0,
+    0 100%,
+    0 100%,
+    100% 100%,
+    100% 100%;
+  background-repeat: no-repeat;
+  background-size:
+    9px 1px,
+    1px 9px,
+    9px 1px,
+    1px 9px,
+    9px 1px,
+    1px 9px,
+    9px 1px,
+    1px 9px;
+  opacity: 0.3;
+  transition: opacity 220ms ease;
+}
+
+.agent-card:hover {
+  border-color: rgba(239, 91, 125, 0.42);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+}
+
+.agent-card:hover::before {
+  opacity: 0.95;
 }
 
 .agent-card-label {
@@ -1984,6 +2208,24 @@ button:focus-visible {
   text-transform: uppercase;
 }
 
+.agent-card-index {
+  position: absolute;
+  top: 0.75rem;
+  right: 1.15rem;
+  z-index: 5;
+  color: var(--muted-text);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+  transition: color 220ms ease, opacity 220ms ease;
+}
+
+.agent-card:hover .agent-card-index {
+  color: var(--accent);
+  opacity: 1;
+}
+
 .chat-card {
   display: flex;
   flex-direction: column;
@@ -1992,10 +2234,11 @@ button:focus-visible {
 }
 
 .chat-stream {
+  --chat-offset: 158px;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  transform: translateY(158px);
+  transform: translateY(var(--chat-offset));
   animation: ag-chat-shift 0.6s ease forwards;
   animation-delay: 4.5s;
 }
@@ -2056,7 +2299,6 @@ button:focus-visible {
 .chat-token {
   display: inline;
   opacity: 0;
-  filter: blur(4px);
   animation: ag-token-in 0.25s ease forwards;
 }
 
@@ -2130,7 +2372,6 @@ button:focus-visible {
   font-style: italic;
   line-height: 1.55;
   opacity: 0;
-  filter: blur(3px);
   animation: ag-token-in 0.35s ease forwards;
 }
 
@@ -2297,9 +2538,21 @@ button:focus-visible {
   transition: background 150ms ease;
 }
 
-.roster-row:hover,
-.roster-row-active {
+.roster-row:hover {
   background: rgba(191, 200, 208, 0.05);
+}
+
+.roster-row-active {
+  background: linear-gradient(
+    100deg,
+    rgba(191, 200, 208, 0.05) 38%,
+    rgba(239, 91, 125, 0.13) 50%,
+    rgba(191, 200, 208, 0.05) 62%
+  );
+  background-size: 240% 100%;
+  animation:
+    ag-slide-up 0.35s ease forwards,
+    ag-shimmer 2.8s linear 1.2s infinite;
 }
 
 .roster-dot {
@@ -2384,8 +2637,11 @@ button:focus-visible {
   min-width: 16px;
   height: 1.5px;
   margin: 0 0.4rem;
-  background: var(--divider);
-  animation: ag-line-fill 0.4s ease forwards;
+  background-color: var(--divider);
+  background-image: linear-gradient(90deg, var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  animation: ag-line-draw 0.55s ease forwards;
 }
 
 @keyframes ag-fade-in {
@@ -2415,7 +2671,6 @@ button:focus-visible {
 @keyframes ag-token-in {
   to {
     opacity: 1;
-    filter: blur(0);
   }
 }
 
@@ -2519,9 +2774,51 @@ button:focus-visible {
   }
 }
 
-@keyframes ag-line-fill {
+@keyframes ag-line-draw {
   to {
-    background: var(--accent);
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes ag-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(72px) rotateX(-18deg) scale(0.93);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0) scale(1);
+  }
+}
+
+@keyframes ag-scan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  88% {
+    opacity: 0.85;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes ag-shimmer {
+  from {
+    background-position: 120% 0;
+  }
+
+  to {
+    background-position: -140% 0;
   }
 }
 
@@ -2605,19 +2902,28 @@ button:focus-visible {
     position: static;
   }
 
-  .agents-replay {
+  .agents-label-sticky {
     position: static;
-    margin-bottom: 1.6rem;
+    margin-bottom: 0;
+  }
+
+  .agents-replay {
+    margin-top: 1rem;
   }
 
   .agents-demo {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+    min-height: 30rem;
   }
 
   .chat-card {
     grid-row: auto;
     min-height: 380px;
+  }
+
+  .chat-stream {
+    --chat-offset: 96px;
   }
 
   .pipe-card {
@@ -2742,6 +3048,39 @@ button:focus-visible {
 
   .content-section {
     padding-block: 4.5rem;
+  }
+
+  .agents-section {
+    padding-block: 3.25rem 3.5rem;
+  }
+
+  .agents-demo {
+    gap: 8px;
+  }
+
+  .agent-card {
+    padding: 2.1rem 0.9rem 0.9rem;
+  }
+
+  .agent-card-label,
+  .agent-card-index {
+    top: 0.65rem;
+  }
+
+  .agent-card-label {
+    left: 0.9rem;
+  }
+
+  .agent-card-index {
+    right: 0.9rem;
+  }
+
+  .agents-sub {
+    margin-top: 0.85rem;
+  }
+
+  .pipe-card {
+    padding-top: 2.1rem;
   }
 
   .about-copy p {
