@@ -5,11 +5,13 @@ export const experience = [
     role: "Software Engineer Intern - AI Agent Infrastructure",
     dates: "April 2026 - Present",
     location: "San Francisco Bay Area, CA",
-    summary: `I build AI agents at Blaze. Businesses scaled across borders run these agents on real payment workflows, and my job is making the infrastructure underneath them fast, safe, and legible.
+    summary: `I build AI agents at Blaze that move real money on stablecoin rails.
 
-I designed and shipped the usage accounting and attribution layer for that agent infrastructure, tracing a single user request as it fans out across provider calls and metering cost, margin, and execution ownership at every hop. It is the same class of problem Stripe and Metronome solve for billing at scale.
+I was one of the main developers of Blaze's AI CFO, an agent that runs financial operations for businesses, from checking balances to sending cross border transfers.
 
-I also build production TypeScript and Express systems that let agents autonomously discover, pay for, and invoke x402 priced model and data APIs with USDC settlement. The work spans provider routing, buyer payment clients, safety caps, and cost controls, with integrations across Anthropic, Coinbase CDP, DexScreener, and Bazaar indexing, all backed by 125+ tests across payment, inference, routing, and accounting paths.`
+I build the production TypeScript and Express systems that let agents discover, pay for, and call x402 priced model and data APIs with USDC settlement. That work covers provider routing, payment clients, safety caps, and cost controls, with integrations across Anthropic, Coinbase CDP, DexScreener, and Bazaar, all backed by 125+ tests.
+
+I also designed and shipped the usage accounting layer that traces cost, margin, and ownership across every provider call an agent makes.`
   },
   {
     company: "UT Southwestern - Tsai Lab",
