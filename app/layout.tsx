@@ -15,11 +15,15 @@ const headingFont = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://suhaasga.com"),
   title: "suhaas.cv",
   description:
     "Portfolio of Suhaas Gaddala, a full stack developer building AI infrastructure, cloud-native systems, machine learning pipelines, backend services, and data-driven products.",
   icons: {
     icon: [{ url: "/favicon.png", type: "image/png" }]
+  },
+  alternates: {
+    canonical: "/"
   },
   openGraph: {
     title: "suhaas.cv",

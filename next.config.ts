@@ -10,6 +10,21 @@ const nextConfig: NextConfig = {
     imageSizes: [96, 160, 256, 384],
     qualities: [72]
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "suhaasga.vercel.app"
+          }
+        ],
+        destination: "https://suhaasga.com/:path*",
+        permanent: true
+      }
+    ];
+  },
   async headers() {
     return [
       {
