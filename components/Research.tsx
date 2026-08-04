@@ -7,7 +7,14 @@ export function Research() {
       <SectionLabel title="Research" />
       <Reveal className="research-copy detail-list" id="research-title">
         <article className="detail-item">
-          <h3>UT Southwestern - Tsai Lab</h3>
+          <h3 className="detail-title-logo">
+            <span
+              className="company-logo"
+              style={{ backgroundImage: "url(/logos/utsw.svg)" }}
+              aria-hidden="true"
+            />
+            UT Southwestern - Tsai Lab
+          </h3>
           <p>AI / Machine Learning Research Intern</p>
           <p>
             Architected a machine learning model for autism-related behavioral

@@ -15,6 +15,13 @@ export function Experience() {
           <Reveal className="experience-row interactive-row" delay={index * 0.06} key={item.company}>
             <div className="row-meta">
               <div className="company-line">
+                {item.logo ? (
+                  <span
+                    className="company-logo"
+                    style={{ backgroundImage: `url(${item.logo})` }}
+                    aria-hidden="true"
+                  />
+                ) : null}
                 <h3>
                   <a href={item.href}>{item.company}</a>
                 </h3>

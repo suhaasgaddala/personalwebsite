@@ -1006,6 +1006,33 @@ button:focus-visible {
   align-items: baseline;
 }
 
+.about-simple .company-logo {
+  flex: 0 0 auto;
+  align-self: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-right: 0.15rem;
+  border-radius: 5px;
+  background-color: var(--bg-soft);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0 0 0 1px rgba(228, 225, 211, 0.16);
+  opacity: 0.85;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.about-simple .interactive-row:hover .company-logo {
+  opacity: 1;
+  transform: translateY(-0.05rem);
+}
+
+.about-simple .detail-item h3.detail-title-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .about-simple .company-line span {
   margin-left: 0;
 }
