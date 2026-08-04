@@ -273,7 +273,7 @@ export function Header() {
           aria-expanded={isCommandOpen}
           onClick={() => setIsCommandOpen(true)}
         >
-          <span aria-hidden="true">⌘</span>
+          <span aria-hidden="true">⌘/Ctrl</span>
           <span>K</span>
         </button>
       </nav>
