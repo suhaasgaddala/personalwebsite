@@ -75,7 +75,8 @@ function ActionRow({ delay }: { delay: number }) {
 
 export function AgentsShowcase() {
   const [runId, setRunId] = useState(0);
-  const [inView, setInView] = useState(false);
+  const [hasEntered, setHasEntered] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -85,13 +86,14 @@ export function AgentsShowcase() {
     }
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setInView(true);
-          observer.disconnect();
+      ([entry]) => {
+        setIsActive(entry.isIntersecting);
+
+        if (entry.isIntersecting) {
+          setHasEntered(true);
         }
       },
-      { rootMargin: "-120px 0px" }
+      { rootMargin: "-10% 0px", threshold: 0.01 }
     );
 
     observer.observe(stage);
@@ -101,7 +103,7 @@ export function AgentsShowcase() {
   return (
     <section className="content-section agents-section section-shell" id="agents">
       <div className="agents-label-col">
-        <div className={`agents-label-sticky${inView ? " agents-label-in" : ""}`}>
+        <div className={`agents-label-sticky${hasEntered ? " agents-label-in" : ""}`}>
           <h2 className="agents-title">
             <span className="agents-title-mask">
               <span className="agents-title-text">Agents</span>
@@ -119,8 +121,11 @@ export function AgentsShowcase() {
       </div>
 
       <div className="agents-stage" ref={stageRef}>
-        {inView ? (
-          <div className="agents-demo agents-demo-live" key={runId}>
+        {hasEntered ? (
+          <div
+            className={`agents-demo agents-demo-live${isActive ? "" : " agents-demo-paused"}`}
+            key={runId}
+          >
             <div className="agent-card chat-card" style={cardDelay(0)}>
               <span className="agent-card-label">chat thread</span>
               <span className="agent-card-index" aria-hidden="true">01</span>

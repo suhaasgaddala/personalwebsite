@@ -14,17 +14,26 @@ export function FeaturedProjects() {
     }
 
     let frame = 0;
+    let isMotionActive = false;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const rows = Array.from(
       section.querySelectorAll<HTMLElement>(".kinetic-project-row")
     );
 
+    const resetMotion = () => {
+      rows.forEach((row) => row.style.removeProperty("--lane-x"));
+      section.removeAttribute("data-motion-active");
+    };
+
     const update = () => {
+      frame = 0;
       const viewportWidth = window.innerWidth;
-      if (viewportWidth < 640) {
-        rows.forEach((row) => row.style.removeProperty("--lane-x"));
+      if (!isMotionActive || reducedMotion.matches || viewportWidth < 640) {
+        resetMotion();
         return;
       }
 
+      section.dataset.motionActive = "true";
       const gutter = Math.max(14, Math.min(38, viewportWidth * 0.024));
       const leftAnchor = gutter;
       const rightAnchor = viewportWidth * 0.34;
@@ -49,19 +58,57 @@ export function FeaturedProjects() {
       });
     };
 
-    const onScroll = () => {
-      window.cancelAnimationFrame(frame);
+    const scheduleUpdate = () => {
+      if (!isMotionActive || frame) {
+        return;
+      }
+
       frame = window.requestAnimationFrame(update);
     };
 
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isMotionActive = entry.isIntersecting;
+
+        if (isMotionActive && !reducedMotion.matches && window.innerWidth >= 640) {
+          section.dataset.motionActive = "true";
+          scheduleUpdate();
+          return;
+        }
+
+        window.cancelAnimationFrame(frame);
+        frame = 0;
+        resetMotion();
+      },
+      { rootMargin: "100% 0px" }
+    );
+
+    const onMotionPreferenceChange = () => {
+      if (reducedMotion.matches) {
+        window.cancelAnimationFrame(frame);
+        frame = 0;
+        resetMotion();
+        return;
+      }
+
+      if (isMotionActive) {
+        section.dataset.motionActive = "true";
+        scheduleUpdate();
+      }
+    };
+
+    observer.observe(section);
+    reducedMotion.addEventListener("change", onMotionPreferenceChange);
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
 
     return () => {
       window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      observer.disconnect();
+      reducedMotion.removeEventListener("change", onMotionPreferenceChange);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      resetMotion();
     };
   }, []);
 

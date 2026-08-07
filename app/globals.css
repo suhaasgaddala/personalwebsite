@@ -86,14 +86,12 @@ button:focus-visible {
   z-index: 20;
   padding: 1.35rem var(--page-pad) 0;
   background: rgba(16, 24, 39, 0.96);
-  backdrop-filter: blur(14px);
 }
 
 .header-enter {
   opacity: 0;
   transform: translate3d(0, -18px, 0);
   animation: header-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  will-change: opacity, transform;
 }
 
 .header-grid {
@@ -137,7 +135,7 @@ button:focus-visible {
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: logo-flow 4.8s ease-in-out infinite;
+  animation: logo-flow 3.2s ease-in-out 2;
 }
 
 .header-link-active:hover {
@@ -183,7 +181,7 @@ button:focus-visible {
   background-clip: text;
   line-height: 1;
   letter-spacing: 0.01em;
-  animation: logo-flow 4.8s ease-in-out infinite;
+  animation: logo-flow 3.2s ease-in-out 2;
 }
 
 .header-contact {
@@ -451,7 +449,6 @@ button:focus-visible {
   transform: perspective(900px) translate3d(0, 48px, 0) rotateX(-14deg) scale(0.94);
   transform-origin: 50% 100%;
   animation: photo-stack-enter 0.95s cubic-bezier(0.34, 1.56, 0.64, 1) 0.85s forwards;
-  will-change: opacity, transform;
 }
 
 .photo-stack-stage {
@@ -479,7 +476,6 @@ button:focus-visible {
   cursor: pointer;
   transform-origin: 50% 82%;
   transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
 }
 
 .photo-card::after {
@@ -610,7 +606,6 @@ button:focus-visible {
   opacity: 0;
   transform: translate3d(0, 0.5em, 0) rotateX(-88deg);
   transform-origin: 50% 88%;
-  filter: blur(8px);
   animation: hero-letter-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   animation-delay: var(--letter-delay, 0s);
   text-shadow: 0 24px 50px rgba(0, 0, 0, 0.16);
@@ -865,7 +860,6 @@ button:focus-visible {
   transition:
     opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
     transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
-  will-change: opacity, transform;
 }
 
 .reveal-visible {
@@ -1354,7 +1348,6 @@ button:focus-visible {
   line-height: 0.78;
   text-transform: uppercase;
   white-space: nowrap;
-  will-change: transform;
 }
 
 .project-row:hover .project-title-marquee,
@@ -1423,6 +1416,9 @@ button:focus-visible {
   text-transform: uppercase;
   white-space: nowrap;
   transform: translate3d(var(--lane-x, 0vw), 0, 0);
+}
+
+.kinetic-projects[data-motion-active="true"] .project-title-marquee {
   will-change: transform;
 }
 
@@ -1689,7 +1685,6 @@ button:focus-visible {
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0) rotateX(0);
-    filter: blur(0);
   }
 }
 
@@ -2045,7 +2040,6 @@ button:focus-visible {
   transform: scale(0.65) translateY(8px);
   transform-origin: bottom left;
   animation: msg-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards var(--message-delay, 0s);
-  will-change: opacity, transform;
 }
 
 .writing-message-link {
@@ -2082,7 +2076,6 @@ button:focus-visible {
   animation:
     msg-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards var(--typing-in, 0s),
     msg-hide 0.18s ease forwards var(--typing-out, 2s);
-  will-change: opacity, transform;
 }
 
 .writing-typing span {
@@ -2090,15 +2083,15 @@ button:focus-visible {
   height: 7px;
   border-radius: 50%;
   background: var(--muted-text);
-  animation: msg-dot 1.2s ease infinite;
+  animation: msg-dot 1.2s ease var(--typing-in, 0s) 2;
 }
 
 .writing-typing span:nth-child(2) {
-  animation-delay: 0.12s;
+  animation-delay: calc(var(--typing-in, 0s) + 0.12s);
 }
 
 .writing-typing span:nth-child(3) {
-  animation-delay: 0.24s;
+  animation-delay: calc(var(--typing-in, 0s) + 0.24s);
 }
 
 .writing-detail-header p {
@@ -2430,15 +2423,15 @@ button:focus-visible {
   height: 7px;
   border-radius: 50%;
   background: var(--muted-text);
-  animation: msg-dot 1.2s ease infinite;
+  animation: msg-dot 1.2s ease var(--typing-in, 0s) 2;
 }
 
 .msg-typing span:nth-child(2) {
-  animation-delay: 0.15s;
+  animation-delay: calc(var(--typing-in, 0s) + 0.15s);
 }
 
 .msg-typing span:nth-child(3) {
-  animation-delay: 0.3s;
+  animation-delay: calc(var(--typing-in, 0s) + 0.3s);
 }
 
 .msg-bubble {
@@ -2467,7 +2460,7 @@ button:focus-visible {
   border-bottom: 1.5px solid rgba(255, 255, 255, 0.48);
   opacity: 0.62;
   transform: translateX(-50%) rotate(45deg);
-  animation: msg-scroll-cue 2.4s ease-in-out infinite;
+  animation: msg-scroll-cue 2.4s ease-in-out 4;
 }
 
 @keyframes msg-pop {
@@ -2584,7 +2577,6 @@ button:focus-visible {
   display: inline-block;
   transform: translateY(115%);
   transition: transform 900ms cubic-bezier(0.34, 1.56, 0.64, 1);
-  will-change: transform;
 }
 
 .agents-label-in .agents-title-text {
@@ -2644,12 +2636,18 @@ button:focus-visible {
   perspective: 1200px;
 }
 
+.agents-demo-paused,
+.agents-demo-paused *,
+.agents-demo-paused *::before,
+.agents-demo-paused *::after {
+  animation-play-state: paused !important;
+}
+
 .agents-demo-live .agent-card {
   opacity: 0;
   transform-origin: 50% 72%;
   animation: ag-card-in 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   animation-delay: var(--card-delay, 0s);
-  will-change: transform, opacity;
 }
 
 .agent-card {
@@ -2756,7 +2754,6 @@ button:focus-visible {
   transform: translateY(var(--chat-offset));
   animation: ag-chat-shift 0.6s ease forwards;
   animation-delay: 4.5s;
-  will-change: transform;
 }
 
 .chat-user {
@@ -2771,7 +2768,6 @@ button:focus-visible {
   line-height: 1.45;
   opacity: 0;
   animation: ag-slide-up 0.45s ease forwards;
-  will-change: opacity, transform;
 }
 
 .chat-thinking {
@@ -3011,9 +3007,8 @@ button:focus-visible {
   border-top-color: var(--accent);
   border-radius: 50%;
   animation:
-    ag-spin 0.7s linear infinite,
+    ag-spin 0.7s linear 6,
     ag-fade-out 0.2s ease forwards;
-  will-change: opacity, transform;
 }
 
 .tool-check {
@@ -3072,7 +3067,6 @@ button:focus-visible {
   animation:
     ag-slide-up 0.35s ease forwards,
     ag-shimmer 2.8s linear 1.2s infinite;
-  will-change: background-position, opacity, transform;
 }
 
 .roster-dot {
