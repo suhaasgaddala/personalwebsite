@@ -2379,6 +2379,7 @@ button:focus-visible {
 .msg-avatar img {
   object-fit: cover;
   object-position: center top;
+  transform: translateX(-1.5%) scale(1.18);
 }
 
 .msg-contact-name {
