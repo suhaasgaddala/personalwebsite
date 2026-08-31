@@ -13,13 +13,6 @@ export function About() {
           projects that I have built are out of trying to fix a problem that I
           have encountered and chasing that dopamine hit of satisfaction.
         </p>
-        <p>
-          As an only child, I spent a lot of time alone and in thought, which
-          has shaped me to appreciate my surroundings and harbor my love for
-          nature. It eventually led to me taking appreciation in patience within
-          growth of things and one day, I aspire to open a ranch within Italy
-          and focus on raising a peaceful life there.
-        </p>
       </Reveal>
     </section>
   );
