@@ -17,8 +17,8 @@ export function Hero() {
         <div className="msg-contact">
           <span className="msg-avatar">
             <Image
-              src="/suhaas-photo.png"
-              alt="Suhaas in a film-style portrait"
+              src="/suhaas-avatar.jpg"
+              alt="Suhaas outdoors in the mountains"
               fill
               sizes="128px"
               priority
