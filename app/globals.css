@@ -1999,6 +1999,62 @@ button:focus-visible {
   transform: translateX(0.35rem);
 }
 
+.substack-post {
+  margin-top: clamp(2rem, 5vw, 3.8rem);
+  border-top: 1px solid var(--divider-strong);
+  border-bottom: 1px solid var(--divider);
+}
+
+.substack-post-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(8.5rem, 18vw, 12rem);
+  gap: clamp(1.25rem, 4vw, 3.5rem);
+  align-items: stretch;
+  padding-block: clamp(1.15rem, 2.8vw, 1.8rem);
+}
+
+.substack-post h2 {
+  align-self: center;
+  max-width: 42rem;
+  margin: 0;
+  color: var(--hero-text);
+  font-family: var(--heading-serif);
+  font-size: clamp(1.65rem, 3.4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.02;
+  transition: color 180ms ease;
+}
+
+.substack-post-image {
+  position: relative;
+  align-self: center;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid var(--divider-strong);
+  background: var(--bg-soft);
+}
+
+.substack-post-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 240ms ease, transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.substack-post-link:hover h2,
+.substack-post-link:focus-visible h2 {
+  color: #ffffff;
+}
+
+.substack-post-link:hover .substack-post-image img,
+.substack-post-link:focus-visible .substack-post-image img {
+  filter: contrast(1.04);
+  transform: scale(1.045);
+}
+
 .writing-imessage {
   display: flex;
   flex-direction: column;
