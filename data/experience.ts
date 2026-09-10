@@ -41,8 +41,9 @@ Another part of my work was making those services easier to operate. I set up se
     role: "Accessibility Infrastructure & Digital Operations",
     dates: "May 2024 - August 2025",
     location: "United States & India",
-    summary:
-      "I built and improved digital infrastructure for accessibility-focused fundraising and outreach across the United States and India. I helped scale monthly traffic from roughly 800 to 12,500+ visitors, redesigned donor onboarding flows that increased conversion rates by 3.4x, built targeted outreach systems that expanded program visibility to 40,000+ families, and streamlined recurring fundraising operations so campaign execution moved about 55% faster."
+    summary: `At Manochetana, I worked on the website and digital tools supporting accessibility-focused fundraising and outreach in the United States and India. I redesigned the donor onboarding flow, increasing donation conversion rates by 3.4x.
+
+I also built targeted outreach systems that expanded program visibility to 40,000+ families, and streamlined recurring fundraising operations so campaign execution moved about 55% faster.`
   },
   {
     company: "Nova",
