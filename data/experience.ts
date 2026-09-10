@@ -4,22 +4,20 @@ export const experience = [
     href: "https://blaze.money",
     logo: "/logos/blaze.png",
     role: "Software Engineer Intern - AI Agent Infrastructure",
-    dates: "April 2026 - Present",
+    dates: "April 2026 - August 2026",
     location: "San Francisco Bay Area, CA",
-    summary: `I build AI agents at Blaze that move real money on stablecoin rails.
+    summary: `At Blaze, I helped build the AI CFO, an agent that handles financial operations for businesses, from checking balances to sending cross-border transfers.
 
-I was one of the main developers of Blaze's AI CFO, an agent that runs financial operations for businesses, from checking balances to sending cross border transfers.
+Much of my work focused on the TypeScript backend that let agents discover and use paid model and data APIs through x402, with payments settled in USDC. I worked on routing requests to providers and handling payments, with spending limits to keep agent costs in check.
 
-I build the production TypeScript and Express systems that let agents discover, pay for, and call x402 priced model and data APIs with USDC settlement. That work covers provider routing, payment clients, safety caps, and cost controls, with integrations across Anthropic, Coinbase CDP, DexScreener, and Bazaar, all backed by 125+ tests.
-
-I also designed and shipped the usage accounting layer that traces cost, margin, and ownership across every provider call an agent makes.`
+I also built the usage accounting layer so we could trace each API call back to the agent that made it and understand its cost and margin. The payment infrastructure included integrations with Anthropic and Coinbase CDP, backed by more than 125 tests.`
   },
   {
     company: "UT Southwestern - Tsai Lab",
     href: "https://labs.utsouthwestern.edu/tsai-lab/research",
     logo: "/logos/utsw.svg",
     role: "AI / Machine Learning Research Intern",
-    dates: "January 2026 - Present",
+    dates: "January 2026 - August 2026",
     location: "Dallas, TX",
     summary:
       "I architect machine learning systems for autism-related behavioral phenotyping in controlled social interaction experiments. The work focuses on converting raw behavioral data into measurable interaction signatures, delivering 88%+ accuracy across 150+ experimental trials, and building a high-throughput behavioral intelligence pipeline that reduced preprocessing time by 76%+ through automated annotation, feature extraction, and downstream analysis."
