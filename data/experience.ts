@@ -32,7 +32,7 @@ I also built a pipeline to automate annotation and feature extraction, reducing 
     location: "Richardson, TX",
     summary: `At Dell, I built backend services in Go and Python and worked on how they processed events using Kafka and MQTT. I also containerized services with Docker and Kubernetes, bringing deployment cycles down from hours to minutes.
 
-I also implemented Vault, Prometheus, Jaeger, and Fluentd across 10+ distributed services to improve secrets management, observability, trace depth, triage speed, and production reliability visibility.`
+Another part of my work was making those services easier to operate. I set up secrets management, monitoring, and distributed tracing across more than 10 services so we could follow requests through the system and investigate issues.`
   },
   {
     company: "Manochetana",
