@@ -30,8 +30,9 @@ I also built a pipeline to automate annotation and feature extraction, reducing 
     role: "Software Engineer Intern - Cloud Infrastructure",
     dates: "May 2025 - August 2025",
     location: "Richardson, TX",
-    summary:
-      "I built cloud-native backend services and infrastructure tooling across distributed systems at Dell, working in Go and Python while integrating Kafka and MQTT to improve event processing throughput by 40%. I containerized services with Docker and Kubernetes, reduced deployment cycles from hours to minutes, and implemented Vault, Prometheus, Jaeger, and Fluentd across 10+ distributed services to improve secrets management, observability, trace depth, triage speed, and production reliability visibility."
+    summary: `At Dell, I built backend services in Go and Python and worked on how they processed events using Kafka and MQTT. I also containerized services with Docker and Kubernetes, bringing deployment cycles down from hours to minutes.
+
+I also implemented Vault, Prometheus, Jaeger, and Fluentd across 10+ distributed services to improve secrets management, observability, trace depth, triage speed, and production reliability visibility.`
   },
   {
     company: "Manochetana",
