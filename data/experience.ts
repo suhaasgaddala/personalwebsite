@@ -19,8 +19,9 @@ I also built the usage accounting layer so we could trace each API call back to 
     role: "AI / Machine Learning Research Intern",
     dates: "January 2026 - August 2026",
     location: "Dallas, TX",
-    summary:
-      "I architect machine learning systems for autism-related behavioral phenotyping in controlled social interaction experiments. The work focuses on converting raw behavioral data into measurable interaction signatures, delivering 88%+ accuracy across 150+ experimental trials, and building a high-throughput behavioral intelligence pipeline that reduced preprocessing time by 76%+ through automated annotation, feature extraction, and downstream analysis."
+    summary: `At the Tsai Lab, I built machine learning systems to study patterns in social behavior as part of autism research. My work turned data from controlled social interaction experiments into measurable features that could be used for analysis.
+
+I also built a high-throughput behavioral intelligence pipeline that reduced preprocessing time by 76%+ through automated annotation, feature extraction, and downstream analysis.`
   },
   {
     company: "Dell Technologies Inc.",
