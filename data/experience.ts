@@ -21,7 +21,7 @@ I also built the usage accounting layer so we could trace each API call back to 
     location: "Dallas, TX",
     summary: `At the Tsai Lab, I built machine learning systems to study patterns in social behavior as part of autism research. My work turned data from controlled social interaction experiments into measurable features that could be used for analysis.
 
-I also built a high-throughput behavioral intelligence pipeline that reduced preprocessing time by 76%+ through automated annotation, feature extraction, and downstream analysis.`
+I also built a pipeline to automate annotation and feature extraction, reducing preprocessing time by more than 76%. This made it faster to prepare the experimental data for model training and further analysis.`
   },
   {
     company: "Dell Technologies Inc.",
