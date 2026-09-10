@@ -52,7 +52,8 @@ I also built tools for targeted outreach and simplified recurring fundraising ta
     role: "Hardware & Software Engineer",
     dates: "August 2023 - May 2025",
     location: "Richardson, TX",
-    summary:
-      "I worked across autonomy, perception, and data infrastructure for Nova, UT Dallas's applied autonomous driving project. I engineered a multimodal pipeline processing 1.2M+ LiDAR, vision, and GPS frames per week, reduced model training time by 47%, and built a LiDAR-camera route-risk model that improved hazard precision by 38% while reducing false positives by 52%."
+    summary: `At Nova, UT Dallas's autonomous driving project, I worked on the data and perception systems behind the vehicle. I built a pipeline that processed more than 1.2 million frames of LiDAR, camera, and GPS data each week, and worked on reducing model training time.
+
+I also built a model that combined LiDAR and camera data to assess route hazards. It improved hazard detection precision while reducing false positives by 52%.`
   }
 ];
