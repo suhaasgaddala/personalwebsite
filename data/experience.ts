@@ -43,7 +43,7 @@ Another part of my work was making those services easier to operate. I set up se
     location: "United States & India",
     summary: `At Manochetana, I worked on the website and digital tools supporting accessibility-focused fundraising and outreach in the United States and India. I redesigned the donor onboarding flow, increasing donation conversion rates by 3.4x.
 
-I also built targeted outreach systems that expanded program visibility to 40,000+ families, and streamlined recurring fundraising operations so campaign execution moved about 55% faster.`
+I also built tools for targeted outreach and simplified recurring fundraising tasks. Alongside that work, I helped grow monthly website traffic from roughly 800 to more than 12,500 visitors.`
   },
   {
     company: "Nova",
