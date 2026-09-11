@@ -6,7 +6,8 @@
     "dev": "node scripts/prepare-dev.mjs && next dev",
     "build": "node scripts/prepare-dev.mjs && next build",
     "lint": "eslint .",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "test:navigation": "node --test scripts/test-navigation.mjs"
   },
   "dependencies": {
     "next": "^15.0.0",

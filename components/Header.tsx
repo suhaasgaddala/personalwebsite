@@ -86,9 +86,9 @@ export function Header() {
     () => [
       { href: "/#top", icon: "home" as const, title: "Home", hint: "Top" },
       { href: "/#agents", icon: "agents" as const, title: "Agents", hint: "AI chat UI" },
-      { href: "/#about", icon: "about" as const, title: "About", hint: "Story" },
+      { href: "/about", icon: "about" as const, title: "About", hint: "Story" },
       { href: "/#experience", icon: "work" as const, title: "Work", hint: "Experience" },
-      { href: "/#projects", icon: "projects" as const, title: "Projects", hint: "Builds" },
+      { href: "/projects", icon: "projects" as const, title: "Projects", hint: "Builds" },
       { href: "/#writings", icon: "writings" as const, title: "Writings", hint: "Substack" },
       { href: socials.linkedIn, icon: "linkedin" as const, title: "LinkedIn", hint: "linkedin.com" },
       { href: socials.x, icon: "x" as const, title: "Twitter / X", hint: "x.com" },
@@ -224,12 +224,12 @@ export function Header() {
       active: homeSection === "agents"
     },
     {
-      href: "/#about",
+      href: "/about",
       label: "about",
       active: pathname.startsWith("/about") || homeSection === "about"
     },
     {
-      href: "/#projects",
+      href: "/projects",
       label: "projects",
       active: pathname.startsWith("/projects") || homeSection === "projects"
     },
