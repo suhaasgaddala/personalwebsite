@@ -3,6 +3,7 @@ export const experience = [
     company: "PwC (PricewaterhouseCoopers)",
     href: "https://www.pwc.com",
     logo: "",
+    role: "Incoming Forward Deployed AI Engineer / Data Scientist",
     summary: ""
   },
   {
