@@ -1,5 +1,11 @@
 export const experience = [
   {
+    company: "PwC (PricewaterhouseCoopers)",
+    href: "https://www.pwc.com",
+    logo: "",
+    summary: ""
+  },
+  {
     company: "Blaze (YC S24)",
     href: "https://blaze.money",
     logo: "/logos/blaze.png",
