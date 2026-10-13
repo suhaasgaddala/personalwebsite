@@ -4,6 +4,8 @@ export const experience = [
     href: "https://www.pwc.com",
     logo: "",
     role: "Incoming Forward Deployed AI Engineer / Data Scientist",
+    dates: "January 2027 - June 2027",
+    location: "New York, NY",
     summary: ""
   },
   {
