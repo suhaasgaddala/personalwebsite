@@ -6,7 +6,7 @@ export const experience = [
     role: "Incoming Forward Deployed AI Engineer / Data Scientist",
     dates: "January 2027 - June 2027",
     location: "New York, NY",
-    summary: "Incoming Spring 2027"
+    summary: "Incoming Spring 2027 · Commercial Technology & Innovation (CT&I)"
   },
   {
     company: "Blaze (YC S24)",
