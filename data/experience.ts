@@ -3,7 +3,7 @@ export const experience = [
     company: "Blaze (YC S24)",
     href: "https://blaze.money",
     logo: "/logos/blaze.png",
-    role: "Software Engineer Intern - AI Agent Infrastructure",
+    role: "Forward Deployed Software Engineer",
     dates: "April 2026 - August 2026",
     location: "San Francisco Bay Area, CA",
     summary: `At Blaze, I helped build the AI CFO, an agent that handles financial operations for businesses, from checking balances to sending cross-border transfers.
